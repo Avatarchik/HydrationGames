@@ -32,13 +32,12 @@ public class TurtleControls : Controls {
 	// Update is called once per frame
 	void Update () {
 		turtleMovement ();
-		animateOnMove ();
-	
+
 	}
 
 	void turtleMovement() {
 	
-		float speedMultiplier = 1f;
+		float speedMultiplier = 4f;
 
 		if (Input.GetKey (_upButton)) {
 			turtleVelocity.y = 1f;
@@ -58,23 +57,6 @@ public class TurtleControls : Controls {
 
 		rb2D.velocity = turtleVelocity * speedMultiplier;
 
-		faceDirectionOfMovement();
-
 	}
-
-	void animateOnMove() {
-		if (rb2D.velocity.magnitude > .2f) {
-			_animator.SetBool("moving", true);
-		} else {
-			_animator.SetBool("moving", false);
-		}
-	}
-
-	void faceDirectionOfMovement() {
-		float angle = Mathf.Atan2(turtleVelocity.x, turtleVelocity.y) * Mathf.Rad2Deg;
-		Quaternion q = Quaternion.AngleAxis(angle, Vector3.back);
-		if (!LeanTween.isTweening(gameObject) && turtleVelocity != Vector2.zero) {
-			LeanTween.rotate (gameObject, q.eulerAngles, .1f);
-		}
-	}
+	
 }

@@ -29,30 +29,14 @@ public class TurtleBaby : TurtleScript {
 			followTurtle(positionToFollow);
 		}
 
-		animateOnMove ();
 
 	}
 
 	void followTurtle(Transform posToFollow) {
 		moveTo = posToFollow.position - transform.position;
 		_rb2D.velocity = moveTo * 5f;
-		faceDirectionOfMovement ();
 
 	}
  	
-	void faceDirectionOfMovement() {
-		float angle = Mathf.Atan2(_rb2D.velocity.x, _rb2D.velocity.y) * Mathf.Rad2Deg;
-		Quaternion q = Quaternion.AngleAxis(angle, Vector3.back);
-		if (!LeanTween.isTweening(gameObject) && _rb2D.velocity.magnitude > .2f) {
-			LeanTween.rotate (gameObject, q.eulerAngles, .01f);
-		}
-	}
 
-	void animateOnMove() {
-		if (_rb2D.velocity.magnitude > .2f) {
-			_animator.SetBool("moving", true);
-		} else {
-			_animator.SetBool("moving", false);
-		}
-	}
 }

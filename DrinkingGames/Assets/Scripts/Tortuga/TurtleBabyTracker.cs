@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 public class TurtleBabyTracker : TurtleScript {
 
+	public Goal goal;
+	private int numBabiesNeeded = 3;
 	public int numBabiesOnBoard = 0;
 	public List<GameObject> babiesOnBoard;
 	public TurtleControls turtleControls;
 	bool babyLost = false;
-
+	
 	// Use this for initialization
 	void Start () {
 		turtleControls = GetComponent<TurtleControls> ();
@@ -17,13 +19,10 @@ public class TurtleBabyTracker : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKey (KeyCode.Space)) {
-			loseBaby();
-		}
-
-	
+		
+		
 	}
-
+	
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.tag == "Baby") {
 			TurtleBaby turtleBaby = coll.gameObject.GetComponent<TurtleBaby>();
@@ -36,17 +35,23 @@ public class TurtleBabyTracker : TurtleScript {
 				}
 				turtleBaby.follow = true;
 			}
+
+			if (checkIfAllBabiesOnBoard()) {
+				goal.setToOpen();
+			}
+				
 		}
 	}
-
-
-	void loseBaby() {
-		if (!babyLost) {
-			print ("BB: " + babiesOnBoard [0]);
+	
+	
+	public void loseBaby() {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 			turtleBaby.follow = false;
 			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
-			babyLost = true;
-		}
+	}
+
+	bool checkIfAllBabiesOnBoard() {
+		bool allBabiesOnBoard = (babiesOnBoard.Count == numBabiesNeeded) ? true : false;
+		return allBabiesOnBoard;
 	}
 }
