@@ -45,7 +45,11 @@ public class TurtleBabyTracker : TurtleScript {
 	
 	
 	public void loseBaby() {
+		print ("BBCOunt: " + babiesOnBoard.Count);
+		int t = babiesOnBoard.Count - 1;
+		print ("BBCOunt-1: " + t.ToString() );
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
+		print ("removing: " + turtleBaby.gameObject.name); 
 			turtleBaby.follow = false;
 			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 	}

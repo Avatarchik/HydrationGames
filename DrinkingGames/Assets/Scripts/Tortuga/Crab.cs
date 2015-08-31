@@ -24,9 +24,9 @@ public class Crab : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.tag == "TurtleParent") {
 			if (!_hasKnockedOffBaby) {
-				print ("got babuy");
 				_crabAudioSource.PlayOneShot(_crabAudioSource.clip);
 				coll.gameObject.GetComponent<TurtleBabyTracker>().loseBaby();
+				_hasKnockedOffBaby = true;
 			}
 		}
 	}

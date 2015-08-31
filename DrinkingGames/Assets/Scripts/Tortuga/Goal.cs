@@ -28,12 +28,13 @@ public class Goal : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.tag == "ParentTurtle") {
+		if (coll.gameObject.tag == "TurtleParent") {
 			if (_isOpen) {
-				takeTurtleAndLoadScoreboard(coll.gameObject);
+				takeTurtle(coll.gameObject);
 				foreach (GameObject turtleBaby in coll.gameObject.GetComponent<TurtleBabyTracker>().babiesOnBoard) {
-					takeTurtleAndLoadScoreboard(turtleBaby);
+					takeTurtle(turtleBaby);
 				}
+				StartCoroutine(loadScoreboardScene(1f));
 			}
 		}
 	}
@@ -50,9 +51,14 @@ public class Goal : MonoBehaviour {
 		LeanTween.scale (gameObject, _originalScale, .5f).setEase (LeanTweenType.easeOutSine);
 	}
 
-	void takeTurtleAndLoadScoreboard(GameObject turtle) {
+	void takeTurtle(GameObject turtle) {
 		LeanTween.move (turtle, transform.position, 1f);
 		LeanTween.scale (turtle, Vector3.zero, 1f);
+	}
+
+	IEnumerator loadScoreboardScene(float delay) {
+		yield return new WaitForSeconds(delay);
+		Application.LoadLevel ("TortugaScoreboard");
 	}
 
 }

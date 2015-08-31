@@ -7,6 +7,7 @@ public class TurtleBaby : TurtleScript {
 	private Animator _animator;
 	public bool follow = false;
 	public Transform positionToFollow;
+	private Vector3 _rotateSpeed;
 	public Rigidbody2D _rb2D;
 	public Vector2 moveTo;
 	public Transform followPosition;
@@ -18,15 +19,15 @@ public class TurtleBaby : TurtleScript {
 		_animator = GetComponent<Animator> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
 		follow = false;
-	
-		//Every turtle has a position to follow
-		//and its own follow position
+		_rotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * 360f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (follow) {
-			followTurtle(positionToFollow);
+			followTurtle (positionToFollow);
+		} else {
+			wander ();
 		}
 
 
@@ -38,5 +39,9 @@ public class TurtleBaby : TurtleScript {
 
 	}
  	
+	public void wander() {
+		_rb2D.velocity = Vector2.zero;
+		transform.Rotate (_rotateSpeed);
+	}
 
 }
