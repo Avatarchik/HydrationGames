@@ -103,6 +103,8 @@
      <Compile Include="Assets\Scripts\Tortuga\CountdownTimer.cs" />
      <Compile Include="Assets\Scripts\Tortuga\Crab.cs" />
      <Compile Include="Assets\Scripts\Tortuga\Goal.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\Seagull.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\SeagullCoin.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleBaby.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleBabyTracker.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleControls.cs" />
