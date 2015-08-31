@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Goal : MonoBehaviour {
+public class Goal : TurtleScript {
+
+
 
 	private Vector3 _slowRotateSpeed;
 	private Vector3 _fastRotateSpeed;
@@ -28,7 +30,7 @@ public class Goal : MonoBehaviour {
 
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.tag == "TurtleParent") {
+		if (coll.gameObject.tag == "TurtleParent" && coll.gameObject.GetComponent<TurtleBabyTracker>().team == team) {
 			if (_isOpen) {
 				takeTurtle(coll.gameObject);
 				foreach (GameObject turtleBaby in coll.gameObject.GetComponent<TurtleBabyTracker>().babiesOnBoard) {

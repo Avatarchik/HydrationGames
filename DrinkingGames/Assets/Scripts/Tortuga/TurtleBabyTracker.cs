@@ -24,7 +24,7 @@ public class TurtleBabyTracker : TurtleScript {
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.tag == "Baby") {
+		if (coll.gameObject.tag == "Baby" && coll.gameObject.GetComponent<TurtleBaby>().team == team) {
 			TurtleBaby turtleBaby = coll.gameObject.GetComponent<TurtleBaby>();
 			if (!turtleBaby.follow) {
 				babiesOnBoard.Add(coll.gameObject);
@@ -45,13 +45,9 @@ public class TurtleBabyTracker : TurtleScript {
 	
 	
 	public void loseBaby() {
-		print ("BBCOunt: " + babiesOnBoard.Count);
-		int t = babiesOnBoard.Count - 1;
-		print ("BBCOunt-1: " + t.ToString() );
-			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
-		print ("removing: " + turtleBaby.gameObject.name); 
-			turtleBaby.follow = false;
-			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
+		TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
+		turtleBaby.follow = false;
+		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 	}
 
 	bool checkIfAllBabiesOnBoard() {
