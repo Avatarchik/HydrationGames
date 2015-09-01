@@ -100,6 +100,7 @@
      <Compile Include="Assets\Scripts\IconAlpha.cs" />
      <Compile Include="Assets\Scripts\OnBoardingMeter.cs" />
      <Compile Include="Assets\Scripts\SoundPlayer.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\BabyManager.cs" />
      <Compile Include="Assets\Scripts\Tortuga\CountdownTimer.cs" />
      <Compile Include="Assets\Scripts\Tortuga\Crab.cs" />
      <Compile Include="Assets\Scripts\Tortuga\Goal.cs" />
@@ -112,6 +113,7 @@
      <Compile Include="Assets\Scripts\Tortuga\TurtleRotateAndAnimate.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleScript.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleTracks.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\WanderTarget.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples\Scripts\Benchmark02.cs" />
@@ -273,14 +275,14 @@
      <None Include="Assets\UltimateToonWater\Media\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\UltimateToonWater\Media\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\UltimateToonWater\Media\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
- <Reference Include="UnityEngine.UI">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
