@@ -11,6 +11,7 @@ public class TurtleBaby : TurtleScript {
 	public Rigidbody2D _rb2D;
 	public Vector2 moveTo;
 	public Transform followPosition;
+
 	public CircleCollider2D wanderTarget;
 
 	private float _angleInDegrees;
@@ -23,14 +24,19 @@ public class TurtleBaby : TurtleScript {
 	public float steerForceMultiplier = 1f;
 	private float _newAngleCountdown;
 
+	private float minBuffer;
+	private float maxBuffer;
+
 	public GameObject debugPoint;
 
 
 
 	// Use this for initialization
 	void Start () {
+		minBuffer = 0f;
+		maxBuffer = 30f;
 		keepInRange = true;
-		_newAngleCountdown = 0.1f;
+		_newAngleCountdown = 0.6f;
 		_wahAudioSource = GetComponent<AudioSource> ();
 		_animator = GetComponent<Animator> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
@@ -44,7 +50,7 @@ public class TurtleBaby : TurtleScript {
 			followTurtle (positionToFollow);
 		} else {
 			followTurtle(wanderTarget.transform);
-			//wander ();
+//			wander ();
 		}
 
 
@@ -67,13 +73,19 @@ public class TurtleBaby : TurtleScript {
 	}
 
 	void steerToTarget() {
-		Vector3 targetPos = getWanderPos ();
+//		Vector3 newTargetPos = getWonderPos();
+		Vector3 targetPos = getWanderPos();
+
+//		if (!LeanTween.isTweening(debugPoint) {
+//			LeanTween.move
+//		}
+
 		
 		_desiredVel = (targetPos - transform.position).normalized*speed;
 		
-		if (keepInRange) {
-			KeepInWanderRange();
-		}
+//		if (keepInRange) {
+//			KeepInWanderRange();
+//		}
 
 
 //		LeanTween.value (gameObject,(Vector2)_steer,(Vector2)__steer, .01f);
@@ -112,8 +124,12 @@ public class TurtleBaby : TurtleScript {
 //				_angleInDegrees = 0;
 //			}
 			_angleInDegrees = Random.Range (0, 360);
+			//_angleInDegrees = Random.Range (minBuffer, maxBuffer);
 			_newAngleTimer = timeToCoundown;
 		}
+
+		minBuffer+=10;
+		maxBuffer+=10;
 	}
 
 	Vector3 getWanderPos() {
