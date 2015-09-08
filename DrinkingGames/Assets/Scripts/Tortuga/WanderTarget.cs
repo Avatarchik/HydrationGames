@@ -25,6 +25,7 @@ public class WanderTarget : MonoBehaviour {
 		y = Mathf.Sin (angle * Mathf.PI/180f) + 2f;
 
 		transform.position = new Vector2(x+perlin,y+perlin);
+
 //		transform.RotateAround (turtle.transform.position, Vector3.back, 30 * Time.deltaTime);
 	}
 

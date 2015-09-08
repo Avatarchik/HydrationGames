@@ -53,6 +53,7 @@ public class TurtleBaby : TurtleScript {
 //			wander ();
 		}
 
+//		Debug.DrawLine (transform.position, transform.localPosition, Color.red);
 
 	}
 
