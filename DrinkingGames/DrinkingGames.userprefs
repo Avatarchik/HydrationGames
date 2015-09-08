@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../CREATESL/CREATESL_Stats/Assets/Scripts/Die.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/WanderTarget.cs">
     <Files>
-      <File FileName="../../../CREATESL/CREATESL_Stats/Assets/Scripts/Die.cs" Line="35" Column="40" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabyTracker.cs" Line="51" Column="118" />
+      <File FileName="Assets/Scripts/Tortuga/WanderTarget.cs" Line="41" Column="39" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBaby.cs" Line="21" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/Crab.cs" Line="15" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

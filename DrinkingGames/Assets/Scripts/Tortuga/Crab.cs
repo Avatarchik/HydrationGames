@@ -12,7 +12,7 @@ public class Crab : MonoBehaviour {
 	void Start () {
 		_crabAudioSource = GetComponent<AudioSource> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
-		setVelocity ();
+//		setVelocity ();
 	}
 	
 	// Update is called once per frame
@@ -30,11 +30,11 @@ public class Crab : MonoBehaviour {
 			}
 		}
 	}
-
-	void setVelocity() {
-		speedMultiplier = Random.Range (1f, 2f);
-		_rb2D.velocity = new Vector2 (0, -1f) * speedMultiplier;
-	}
+//
+//	void setVelocity() {
+//		speedMultiplier = Random.Range (1f, 2f);
+//		_rb2D.velocity = new Vector2 (0, -1f) * speedMultiplier;
+//	}
 
 	void reset() {
 		_hasKnockedOffBaby = false;
