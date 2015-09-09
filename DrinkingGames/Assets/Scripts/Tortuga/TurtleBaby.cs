@@ -5,6 +5,7 @@ public class TurtleBaby : TurtleScript {
 
 	private AudioSource _wahAudioSource;
 	private Animator _animator;
+	public BabyContainer babyContainer;
 	public bool follow = false;
 	public Transform positionToFollow;
 	private Vector3 _rotateSpeed;
@@ -30,7 +31,6 @@ public class TurtleBaby : TurtleScript {
 	public GameObject debugPoint;
 
 
-
 	
 
 	// Use this for initialization
@@ -49,6 +49,7 @@ public class TurtleBaby : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		if (follow) {
+			babyContainer.follow(positionToFollow);
 			followTurtle (positionToFollow);
 		} else {
 			followTurtle(wanderTarget.transform);
@@ -58,6 +59,8 @@ public class TurtleBaby : TurtleScript {
 //		Debug.DrawLine (transform.position, transform.localPosition, Color.red);
 
 	}
+
+
 
 	void followTurtle(Transform posToFollow) {
 		moveTo = posToFollow.position - transform.position;

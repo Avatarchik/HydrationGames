@@ -38,7 +38,7 @@ public class WanderTarget : MonoBehaviour {
 		resettingPos = true;
 		print ("reseting to: " + pos);
 		transform.position = pos;
-		yield return new WaitForSeconds(0.61f);
+		yield return new WaitForSeconds(0.01f);
 		resettingPos = false;
 
 	}
