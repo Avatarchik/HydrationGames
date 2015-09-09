@@ -48,6 +48,9 @@ public class TurtleBabyTracker : TurtleScript {
 	
 	public void loseBaby() {
 		TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
+
+		turtleBaby._rb2D.velocity = Vector2.zero;
+		StartCoroutine (turtleBaby.babyContainer.GetComponent<BabyContainer> ().resetPosition (turtleBaby.transform.position));
 		StartCoroutine(turtleBaby.wanderTarget.GetComponent<WanderTarget> ().resetPosition (turtleBaby.transform.position));
 		turtleBaby.follow = false;
 

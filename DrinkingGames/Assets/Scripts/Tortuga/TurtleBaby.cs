@@ -49,7 +49,6 @@ public class TurtleBaby : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		if (follow) {
-			babyContainer.follow(positionToFollow);
 			followTurtle (positionToFollow);
 		} else {
 			followTurtle(wanderTarget.transform);

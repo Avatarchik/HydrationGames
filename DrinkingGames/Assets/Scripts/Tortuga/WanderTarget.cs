@@ -26,10 +26,15 @@ public class WanderTarget : MonoBehaviour {
 			}
 
 			float perlin = Mathf.PerlinNoise(Time.fixedTime,Time.fixedTime+1000);
-			x = Mathf.Cos (angle * Mathf.PI/180f) * 2f;
-			y = Mathf.Sin (angle * Mathf.PI/180f) * 2f;
-		
-			transform.localPosition = new Vector2(x+perlin,y+perlin);
+			x = Mathf.Cos (angle * Mathf.PI/180f) + 0f;
+			y = Mathf.Sin (angle * Mathf.PI/180f) + 0f;
+	
+			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) *  .2f;
+			print ("clampedPerlin: " + clampedPerlin);
+//			_rb2D.velocity = new Vector2(clampedPerlin,clampedPerlin);
+//			_rb2D.angularVelocity = clampedPerlin;
+
+			transform.localPosition = new Vector2(x+clampedPerlin,y+clampedPerlin);
 		}
 //		transform.RotateAround (turtle.transform.position, Vector3.back, 30 * Time.deltaTime);
 	}
@@ -38,7 +43,7 @@ public class WanderTarget : MonoBehaviour {
 		resettingPos = true;
 		print ("reseting to: " + pos);
 		transform.position = pos;
-		yield return new WaitForSeconds(0.01f);
+		yield return new WaitForSeconds(0.014f);
 		resettingPos = false;
 
 	}
