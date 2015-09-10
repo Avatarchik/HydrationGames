@@ -6,7 +6,9 @@ public class TurtleBaby : TurtleScript {
 	private AudioSource _wahAudioSource;
 	private Animator _animator;
 	public BabyContainer babyContainer;
-	public bool follow = false;
+	public bool followTurtle = false;
+	public bool wander = false;
+	public bool skidSpin = false;
 	public Transform positionToFollow;
 	private Vector3 _rotateSpeed;
 	public Rigidbody2D _rb2D;
@@ -42,40 +44,70 @@ public class TurtleBaby : TurtleScript {
 		_wahAudioSource = GetComponent<AudioSource> ();
 		_animator = GetComponent<Animator> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
-		follow = false;
+		followTurtle = false;
 		_rotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * 360f);
+		wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
+		//StartCoroutine(skidToWanderTarget());
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (follow) {
-			followTurtle (positionToFollow);
+
+		if (followTurtle) {
+			followObject(positionToFollow);
 		} else {
-			followTurtle(wanderTarget.transform);
-//			wander ();
+			StartCoroutine(skidToWanderTarget());
+			if (wander) {
+				followObject(wanderTarget.transform);
 		}
+
+	}
+//		if (follow) {
+//			followTurtle (positionToFollow);
+//		} else {
+//			followTurtle(wanderTarget.transform);
+////			wander ();
+//		}
 
 //		Debug.DrawLine (transform.position, transform.localPosition, Color.red);
 
 	}
 
-
-
-	void followTurtle(Transform posToFollow) {
+	void followObject(Transform posToFollow) {
 		moveTo = posToFollow.position - transform.position;
-		_rb2D.velocity = moveTo * 5f;
-
+		_rb2D.velocity = moveTo * 5f; //*Time.deltatime
 	}
+
+	public IEnumerator skidToWanderTarget() {
+
+		_rb2D.AddForce ((wanderTarget.transform.position - gameObject.transform.position).normalized * .1f, ForceMode2D.Impulse);
+		_rb2D.AddTorque(1100f, ForceMode2D.Impulse);
+//		float dist = Vector2.Distance(gameObject.transform.position, wanderTarget.transform.position);
+		while (Vector2.Distance(gameObject.transform.position, wanderTarget.transform.position) > .5f) {
+		//	_rb2D.velocity = (wanderTarget.transform.position - gameObject.transform.position).normalized * 4f;
+			yield return new WaitForEndOfFrame();
+		}
+
+		yield return null;
+		wander = true;
+	}
+
+	//	void followTurtle(Transform posToFollow) {
+//		moveTo = posToFollow.position - transform.position;
+//		_rb2D.velocity = moveTo * 5f;
+//
+//	}
  	
-	public void wander() {
-//		moveInCircle (Vector3.zero);
-		getNextAngle (_newAngleCountdown);
-		steerToTarget ();
-
-		//		StartCoroutine(steerToTarget ());
-//		_rb2D.velocity = Vector2.zero;
-//		transform.Rotate (_rotateSpeed);
-	}
+//	public void wander() {
+////		moveInCircle (Vector3.zero);
+//		getNextAngle (_newAngleCountdown);
+//		steerToTarget ();
+//
+//		//		StartCoroutine(steerToTarget ());
+////		_rb2D.velocity = Vector2.zero;
+////		transform.Rotate (_rotateSpeed);
+//	}
 
 	void steerToTarget() {
 //		Vector3 newTargetPos = getWonderPos();

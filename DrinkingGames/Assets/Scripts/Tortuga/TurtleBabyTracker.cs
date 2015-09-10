@@ -26,14 +26,16 @@ public class TurtleBabyTracker : TurtleScript {
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject.tag == "Baby" && coll.gameObject.GetComponent<TurtleBaby>().team == team) {
 			TurtleBaby turtleBaby = coll.gameObject.GetComponent<TurtleBaby>();
-			if (!turtleBaby.follow) {
+
+			if (!turtleBaby.followTurtle) {
 				babiesOnBoard.Add(coll.gameObject);
 				if (babiesOnBoard.Count == 1) {
 					turtleBaby.positionToFollow = turtleControls.followPosition;
 				} else {
 					turtleBaby.positionToFollow = babiesOnBoard[babiesOnBoard.Count - 2].GetComponent<TurtleBaby>().followPosition;
 				}
-				turtleBaby.follow = true;
+				turtleBaby.wander = false;
+				turtleBaby.followTurtle = true;
 			}
 				
 		}
@@ -50,9 +52,11 @@ public class TurtleBabyTracker : TurtleScript {
 		TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 
 		turtleBaby._rb2D.velocity = Vector2.zero;
-		StartCoroutine (turtleBaby.babyContainer.GetComponent<BabyContainer> ().resetPosition (turtleBaby.transform.position));
-		StartCoroutine(turtleBaby.wanderTarget.GetComponent<WanderTarget> ().resetPosition (turtleBaby.transform.position));
-		turtleBaby.follow = false;
+		turtleBaby.wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
+//		StartCoroutine (turtleBaby.babyContainer.GetComponent<BabyContainer> ().resetPosition (turtleBaby.transform.position));
+//		StartCoroutine(turtleBaby.wanderTarget.GetComponent<WanderTarget> ().resetPosition (turtleBaby.transform.position));
+
+		turtleBaby.followTurtle = false;
 
 		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 	}

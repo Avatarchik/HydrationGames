@@ -3,6 +3,7 @@ using System.Collections;
 
 public class WanderTarget : MonoBehaviour {
 
+	public GameObject wanderTargetContainer;
 	private Rigidbody2D _rb2D;
 	public GameObject turtle;
 	public float angle = 0;
@@ -30,22 +31,25 @@ public class WanderTarget : MonoBehaviour {
 			y = Mathf.Sin (angle * Mathf.PI/180f) + 0f;
 	
 			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) *  .2f;
-			print ("clampedPerlin: " + clampedPerlin);
-//			_rb2D.velocity = new Vector2(clampedPerlin,clampedPerlin);
-//			_rb2D.angularVelocity = clampedPerlin;
 
 			transform.localPosition = new Vector2(x+clampedPerlin,y+clampedPerlin);
 		}
 //		transform.RotateAround (turtle.transform.position, Vector3.back, 30 * Time.deltaTime);
 	}
 
-	public IEnumerator resetPosition(Vector3 pos) {
-		resettingPos = true;
-		print ("reseting to: " + pos);
-		transform.position = pos;
-		yield return new WaitForSeconds(0.014f);
-		resettingPos = false;
+	public void setContainerPosition() {
+		Vector2 newPos = new Vector2(Random.Range(-5f,5f), Random.Range (-3f,3f));
+		wanderTargetContainer.transform.position = newPos;
 
 	}
+
+//	public IEnumerator resetPosition(Vector3 pos) {
+//		resettingPos = true;
+//		print ("reseting to: " + pos);
+//		transform.position = pos;
+//		yield return new WaitForSeconds(0.014f);
+//		resettingPos = false;
+//
+//	}
 
 }
