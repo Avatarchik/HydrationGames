@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TurtleBaby : TurtleScript {
 
+	private Light _light;
 	private AudioSource _wahAudioSource;
 	private Animator _animator;
 	public BabyContainer babyContainer;
@@ -17,61 +18,45 @@ public class TurtleBaby : TurtleScript {
 
 	public CircleCollider2D wanderTarget;
 
+	public bool keepInRange;
 	private float _angleInDegrees;
 	private float _newAngleTimer;
 	public float speed = 1;
-	public bool keepInRange;
-	private Vector3 _desiredVel;
-	private Vector3 _steer;
+	private float _osc;
 	public float wanderRange = 10;
 	public float steerForceMultiplier = 1f;
-	private float _newAngleCountdown;
-
-	private float minBuffer;
-	private float maxBuffer;
+	private Vector3 _desiredVel;
+	private Vector3 _steer;
 
 	public GameObject debugPoint;
 
-
-	
-
 	// Use this for initialization
 	void Start () {
-		minBuffer = 0f;
-		maxBuffer = 30f;
-		keepInRange = true;
-		_newAngleCountdown = 0.6f;
+		_light = GetComponent<Light> ();
 		_wahAudioSource = GetComponent<AudioSource> ();
 		_animator = GetComponent<Animator> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
+		wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
+
+		keepInRange = true;
 		followTurtle = false;
 		_rotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * 360f);
-		wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
+		lightOn (true);
 		//StartCoroutine(skidToWanderTarget());
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (followTurtle) {
 			followObject(positionToFollow);
 		} else {
 			StartCoroutine(skidToWanderTarget());
 			if (wander) {
 				followObject(wanderTarget.transform);
+				OscillateHalo(3f,1f);
+			}
 		}
-
-	}
-//		if (follow) {
-//			followTurtle (positionToFollow);
-//		} else {
-//			followTurtle(wanderTarget.transform);
-////			wander ();
-//		}
-
-//		Debug.DrawLine (transform.position, transform.localPosition, Color.red);
-
 	}
 
 	void followObject(Transform posToFollow) {
@@ -82,10 +67,9 @@ public class TurtleBaby : TurtleScript {
 	public IEnumerator skidToWanderTarget() {
 
 		_rb2D.AddForce ((wanderTarget.transform.position - gameObject.transform.position).normalized * .1f, ForceMode2D.Impulse);
-		_rb2D.AddTorque(1100f, ForceMode2D.Impulse);
-//		float dist = Vector2.Distance(gameObject.transform.position, wanderTarget.transform.position);
+
 		while (Vector2.Distance(gameObject.transform.position, wanderTarget.transform.position) > .5f) {
-		//	_rb2D.velocity = (wanderTarget.transform.position - gameObject.transform.position).normalized * 4f;
+			transform.Rotate(Vector3.back, 360*Time.deltaTime);
 			yield return new WaitForEndOfFrame();
 		}
 
@@ -93,105 +77,37 @@ public class TurtleBaby : TurtleScript {
 		wander = true;
 	}
 
-	//	void followTurtle(Transform posToFollow) {
-//		moveTo = posToFollow.position - transform.position;
-//		_rb2D.velocity = moveTo * 5f;
-//
-//	}
- 	
-//	public void wander() {
-////		moveInCircle (Vector3.zero);
-//		getNextAngle (_newAngleCountdown);
-//		steerToTarget ();
-//
-//		//		StartCoroutine(steerToTarget ());
-////		_rb2D.velocity = Vector2.zero;
-////		transform.Rotate (_rotateSpeed);
-//	}
-
-	void steerToTarget() {
-//		Vector3 newTargetPos = getWonderPos();
-		Vector3 targetPos = getWanderPos();
-
-//		if (!LeanTween.isTweening(debugPoint) {
-//			LeanTween.move
-//		}
-
-		
-		_desiredVel = (targetPos - transform.position).normalized*speed;
-		
-//		if (keepInRange) {
-//			KeepInWanderRange();
-//		}
+	public void lightOn(bool on) {
 
 
-//		LeanTween.value (gameObject,(Vector2)_steer,(Vector2)__steer, .01f);
-		_steer = ((Vector2)_desiredVel - _rb2D.velocity);
-
-//		LeanTween.value (gameObject, (Vector2)_rb2D.velocity, (Vector2)_steer, 1f);
-		_rb2D.velocity += (Vector2)(_steer*steerForceMultiplier);
-	}
-
-	void KeepInWanderRange() {
-		if (transform.localPosition.x > wanderRange) {
-			_desiredVel = new Vector3 (-speed, _rb2D.velocity.y);
-		}
-		
-		if (transform.localPosition.x < -wanderRange) {
-			_desiredVel = new Vector3 (speed, _rb2D.velocity.y);
-		} 
-		
-		if (transform.localPosition.y > wanderRange) {
-			_desiredVel = new Vector3 (_rb2D.velocity.y, -speed);
-		}
-		
-		if (transform.localPosition.y < -wanderRange) {
-			_desiredVel = new Vector3 (_rb2D.velocity.y, speed);
-		}
-	}
-
-
-
-	void getNextAngle(float timeToCoundown) {
-		_newAngleTimer -= Time.deltaTime;
-
-		if (_newAngleTimer <= 0) {
-			_angleInDegrees++;
-//			if (_angleInDegrees >= 360) {
-//				_angleInDegrees = 0;
-//			}
-			_angleInDegrees = Random.Range (0, 360);
-			//_angleInDegrees = Random.Range (minBuffer, maxBuffer);
-			_newAngleTimer = timeToCoundown;
-		}
-
-		minBuffer+=10;
-		maxBuffer+=10;
-	}
-
-	Vector3 getWanderPos() {
-		float x = (float)(wanderTarget.radius * Mathf.Cos(_angleInDegrees * Mathf.PI / 180F)) + wanderTarget.transform.position.x;
-		float y = (float)(wanderTarget.radius * Mathf.Sin(_angleInDegrees * Mathf.PI / 180F)) + wanderTarget.transform.position.y;
-
-
-		Vector3 pos = new Vector3 (x, y);
-		debugPoint.transform.position = pos;		
-		return pos;
-	}
-
-	void moveInCircle(Vector3 center) {
-			Vector3 toCenter = center - transform.position;
-		print ("tp center: " + toCenter);
-		_rb2D.velocity += (Vector2)toCenter.normalized;
-		print ("vel; " + _rb2D.velocity);
-		
-		//		float angle =0;
-//		float speed = (2 * Mathf.PI) / 5; //2*PI in degress is 360, so you get 5 seconds to complete a circle
-//		float radius=5;
-//		angle += speed*Time.deltaTime; //if you want to switch direction, use -= instead of +=
-//		float	x = Mathf.Cos(angle)*radius;
-//		float y = Mathf.Sin(angle)*radius;
+			_light.enabled = on;
 	
+
 	}
+
+	
+	void OscillateHalo(float haloOscillationSpeed, float haloOscillationScale) {
+		_osc = Mathf.Sin (Time.time * haloOscillationSpeed) * haloOscillationScale +2f;
+		_light.range = _osc;
+	}
+
+//	void KeepInWanderRange() {
+//		if (transform.localPosition.x > wanderRange) {
+//			_desiredVel = new Vector3 (-speed, _rb2D.velocity.y);
+//		}
+//		
+//		if (transform.localPosition.x < -wanderRange) {
+//			_desiredVel = new Vector3 (speed, _rb2D.velocity.y);
+//		} 
+//		
+//		if (transform.localPosition.y > wanderRange) {
+//			_desiredVel = new Vector3 (_rb2D.velocity.y, -speed);
+//		}
+//		
+//		if (transform.localPosition.y < -wanderRange) {
+//			_desiredVel = new Vector3 (_rb2D.velocity.y, speed);
+//		}
+//	}
+
 
 }

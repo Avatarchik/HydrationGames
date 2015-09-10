@@ -36,6 +36,7 @@ public class TurtleBabyTracker : TurtleScript {
 				}
 				turtleBaby.wander = false;
 				turtleBaby.followTurtle = true;
+				turtleBaby.lightOn(false);
 			}
 				
 		}
@@ -53,10 +54,8 @@ public class TurtleBabyTracker : TurtleScript {
 
 		turtleBaby._rb2D.velocity = Vector2.zero;
 		turtleBaby.wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
-//		StartCoroutine (turtleBaby.babyContainer.GetComponent<BabyContainer> ().resetPosition (turtleBaby.transform.position));
-//		StartCoroutine(turtleBaby.wanderTarget.GetComponent<WanderTarget> ().resetPosition (turtleBaby.transform.position));
-
 		turtleBaby.followTurtle = false;
+		turtleBaby.lightOn(true);
 
 		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 	}
