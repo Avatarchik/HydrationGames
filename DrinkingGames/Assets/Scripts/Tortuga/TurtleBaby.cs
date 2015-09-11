@@ -27,6 +27,7 @@ public class TurtleBaby : TurtleScript {
 	public float steerForceMultiplier = 1f;
 	private Vector3 _desiredVel;
 	private Vector3 _steer;
+	private float _maxSpeed = 4f;
 
 	public GameObject debugPoint;
 
@@ -49,11 +50,13 @@ public class TurtleBaby : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		if (followTurtle) {
+			_maxSpeed = 4f;
 			followObject(positionToFollow);
 		} else {
-			StartCoroutine(skidToWanderTarget());
+			//StartCoroutine(skidToWanderTarget());
 			if (wander) {
-				followObject(wanderTarget.transform);
+				_maxSpeed = 2f;
+				followObject(debugPoint.transform);
 				OscillateHalo(3f,1f);
 			}
 		}
@@ -61,7 +64,11 @@ public class TurtleBaby : TurtleScript {
 
 	void followObject(Transform posToFollow) {
 		moveTo = posToFollow.position - transform.position;
-		_rb2D.velocity = moveTo * 5f; //*Time.deltatime
+		if (moveTo.magnitude > .2f) {	
+			_rb2D.velocity = moveTo * _maxSpeed;
+		} else {
+			_rb2D.velocity = Vector2.zero;
+		} 
 	}
 
 	public IEnumerator skidToWanderTarget() {

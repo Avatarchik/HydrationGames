@@ -4,6 +4,9 @@ using System.Collections;
 public class WanderTarget : MonoBehaviour {
 
 	public GameObject wanderTargetContainer;
+	public GameObject debugPoint;
+	public CircleCollider2D wanderTargetCollider;
+
 	private Rigidbody2D _rb2D;
 	public GameObject turtle;
 	public float angle = 0;
@@ -12,6 +15,7 @@ public class WanderTarget : MonoBehaviour {
 	float y = 0;
 	// Use this for initialization
 	void Start () {
+		wanderTargetCollider = GetComponent<CircleCollider2D> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
 
 	}
@@ -20,19 +24,22 @@ public class WanderTarget : MonoBehaviour {
 	void Update () {
 
 		if (!resettingPos) {
-			
-			angle+=1f;
+
+			float perlin = Mathf.PerlinNoise(Time.fixedTime,Time.fixedTime+1000);
+			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) * 4f;
+			print (clampedPerlin);
+
+			angle+= clampedPerlin;
 			if (angle > 360) {
 				angle = 0;
 			}
 
-			float perlin = Mathf.PerlinNoise(Time.fixedTime,Time.fixedTime+1000);
-			x = Mathf.Cos (angle * Mathf.PI/180f) + 0f;
-			y = Mathf.Sin (angle * Mathf.PI/180f) + 0f;
+			x = Mathf.Cos (angle * Mathf.PI/180f) * wanderTargetCollider.radius;
+			y = Mathf.Sin (angle * Mathf.PI/180f) * wanderTargetCollider.radius;
 	
-			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) *  .2f;
+			//float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) *  .2f;
 
-			transform.localPosition = new Vector2(x+clampedPerlin,y+clampedPerlin);
+			debugPoint.transform.localPosition = new Vector2(x,y);
 		}
 //		transform.RotateAround (turtle.transform.position, Vector3.back, 30 * Time.deltaTime);
 	}
