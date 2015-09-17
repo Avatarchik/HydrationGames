@@ -9,7 +9,7 @@ public class TurtleBaby : TurtleScript {
 	public BabyContainer babyContainer;
 	public bool followTurtle = false;
 	public bool wander = false;
-	public bool skidSpin = false;
+	private bool skidCoroutineRunning = false;
 	public Transform positionToFollow;
 	private Vector3 _rotateSpeed;
 	public Rigidbody2D _rb2D;
@@ -37,7 +37,6 @@ public class TurtleBaby : TurtleScript {
 		_wahAudioSource = GetComponent<AudioSource> ();
 		_animator = GetComponent<Animator> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
-		wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
 
 		keepInRange = true;
 		followTurtle = false;
@@ -53,8 +52,9 @@ public class TurtleBaby : TurtleScript {
 			_maxSpeed = 4f;
 			followObject(positionToFollow);
 		} else {
-			//StartCoroutine(skidToWanderTarget());
-			if (wander) {
+			if (!wander && !skidCoroutineRunning) {
+				StartCoroutine(skidToWanderTarget());
+			} else {
 				_maxSpeed = 2f;
 				followObject(debugPoint.transform);
 				OscillateHalo(3f,1f);
@@ -72,16 +72,22 @@ public class TurtleBaby : TurtleScript {
 	}
 
 	public IEnumerator skidToWanderTarget() {
+		skidCoroutineRunning = true;
+		Vector3 randomPosition = new Vector3 (Random.Range (-3f,3f), Random.Range(-3f,3f));
+		Debug.DrawLine (transform.position, randomPosition, Color.red, 20f);
 
-		_rb2D.AddForce ((wanderTarget.transform.position - gameObject.transform.position).normalized * .1f, ForceMode2D.Impulse);
+//		LeanTween.move (gameObject,randomPosition,1f);
+		_rb2D.AddForce ((randomPosition - gameObject.transform.position).normalized * 4f, ForceMode2D.Impulse);
 
-		while (Vector2.Distance(gameObject.transform.position, wanderTarget.transform.position) > .5f) {
+		while (Vector2.Distance(gameObject.transform.position, randomPosition) > .5f) {
 			transform.Rotate(Vector3.back, 360*Time.deltaTime);
 			yield return new WaitForEndOfFrame();
 		}
 
 		yield return null;
 		wander = true;
+		skidCoroutineRunning = false;
+
 	}
 
 	public void lightOn(bool on) {

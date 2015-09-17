@@ -52,11 +52,10 @@ public class TurtleBabyTracker : TurtleScript {
 	public void loseBaby() {
 		TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 
-		turtleBaby._rb2D.velocity = Vector2.zero;
-		turtleBaby.wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
+//		turtleBaby._rb2D.velocity = Vector2.zero;
+//		turtleBaby.wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
 		turtleBaby.followTurtle = false;
 		turtleBaby.lightOn(true);
-
 		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 	}
 

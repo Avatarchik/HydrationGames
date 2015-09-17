@@ -10,11 +10,16 @@ public class WanderTarget : MonoBehaviour {
 	private Rigidbody2D _rb2D;
 	public GameObject turtle;
 	public float angle = 0;
+
 	private bool resettingPos = false;
 	float x= 0;
 	float y = 0;
+	private float _perlin1;
+	private float _perlin2;
 	// Use this for initialization
 	void Start () {
+		_perlin1 = Random.Range (0f,1000f);
+		_perlin2 = Random.Range (0f,1000f);
 		wanderTargetCollider = GetComponent<CircleCollider2D> ();
 		_rb2D = GetComponent<Rigidbody2D> ();
 
@@ -25,7 +30,7 @@ public class WanderTarget : MonoBehaviour {
 
 		if (!resettingPos) {
 
-			float perlin = Mathf.PerlinNoise(Time.fixedTime,Time.fixedTime+1000);
+			float perlin = Mathf.PerlinNoise(Time.fixedTime+_perlin1,Time.fixedTime+_perlin2);
 			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) * 4f;
 			print (clampedPerlin);
 
