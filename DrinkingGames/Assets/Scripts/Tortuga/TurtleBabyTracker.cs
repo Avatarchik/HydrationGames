@@ -41,11 +41,8 @@ public class TurtleBabyTracker : TurtleScript {
 				
 		}
 
-		if (checkIfAllBabiesOnBoard()) {
-			goal.setToOpen();
-		} else {
-			goal.setToClosed();
-		}
+		checkBabiesAndSetGoal();
+
 	}
 	
 	
@@ -57,9 +54,18 @@ public class TurtleBabyTracker : TurtleScript {
 		turtleBaby.followTurtle = false;
 		turtleBaby.lightOn(true);
 		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
+		checkBabiesAndSetGoal();
 	}
 
-	bool checkIfAllBabiesOnBoard() {
+	void checkBabiesAndSetGoal() {
+		if (allBabiesOnBoard()) {
+			goal.setToOpen();
+		} else {
+			goal.setToClosed();
+		}
+	}
+
+	bool allBabiesOnBoard() {
 		bool allBabiesOnBoard = (babiesOnBoard.Count == numBabiesNeeded) ? true : false;
 		return allBabiesOnBoard;
 	}
