@@ -6,6 +6,7 @@ public class SeagullCoin : MonoBehaviour {
 	public GameObject blueTurtleParent;
 	public GameObject greenTurtleParent;
 	public Seagull seagull;
+	private float _yBounds = -7f;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,12 @@ public class SeagullCoin : MonoBehaviour {
 			}
 
 			seagull.attackTurtle();
+		}
+	}
+
+	void setInactiveIfOutOfBounds() {
+		if (transform.position.y < _yBounds) {
+			gameObject.SetActive(false);
 		}
 	}
 }
