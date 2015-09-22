@@ -28,7 +28,7 @@ public class WanderTarget : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!resettingPos) {
+//		if (!resettingPos) {
 
 			float perlin = Mathf.PerlinNoise(Time.fixedTime+_perlin1,Time.fixedTime+_perlin2);
 			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) * 4f;
@@ -45,7 +45,7 @@ public class WanderTarget : MonoBehaviour {
 			//float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) *  .2f;
 
 			debugPoint.transform.localPosition = new Vector2(x,y);
-		}
+//		}
 //		transform.RotateAround (turtle.transform.position, Vector3.back, 30 * Time.deltaTime);
 	}
 

@@ -47,14 +47,13 @@ public class TurtleBabyTracker : TurtleScript {
 	
 	
 	public void loseBaby() {
-		TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
-
-//		turtleBaby._rb2D.velocity = Vector2.zero;
-//		turtleBaby.wanderTarget.GetComponent<WanderTarget>().setContainerPosition();
-		turtleBaby.followTurtle = false;
-		turtleBaby.lightOn(true);
-		babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
-		checkBabiesAndSetGoal();
+		if (babiesOnBoard.Count > 0) {
+			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
+			turtleBaby.followTurtle = false;
+			turtleBaby.lightOn(true);
+			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
+			checkBabiesAndSetGoal();
+		}
 	}
 
 	void checkBabiesAndSetGoal() {

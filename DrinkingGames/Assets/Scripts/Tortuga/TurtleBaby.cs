@@ -52,13 +52,13 @@ public class TurtleBaby : TurtleScript {
 			_maxSpeed = 4f;
 			followObject(positionToFollow);
 		} else {
-			if (!wander && !skidCoroutineRunning) {
-				StartCoroutine(skidToWanderTarget());
-			} else {
+			//if (!wander && !skidCoroutineRunning) {
+			//	StartCoroutine(skidToWanderTarget());
+			//} else {
 				_maxSpeed = 2f;
 				followObject(debugPoint.transform);
 				OscillateHalo(3f,1f);
-			}
+			//}
 		}
 	}
 

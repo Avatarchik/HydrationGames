@@ -51,6 +51,7 @@ public class Crab : MonoBehaviour {
 	}
 
 	void setInactiveWhenOutOfBounds() {
+		reset ();
 		if (transform.position.x > _xBounds || transform.position.x < -_xBounds) {
 			gameObject.SetActive(false);
 		}
