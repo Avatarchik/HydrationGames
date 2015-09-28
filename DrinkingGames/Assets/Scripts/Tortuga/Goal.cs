@@ -10,6 +10,7 @@ public class Goal : TurtleScript {
 	private Vector3 _rotateSpeed;
 	private Vector3 _originalScale;
 	private Vector3 _bigScale;
+	[SerializeField]
 	private bool _isOpen = false;
 
 	// Use this for initialization
@@ -44,12 +45,14 @@ public class Goal : TurtleScript {
 	public void setToOpen() {
 		_isOpen = true;
 		_rotateSpeed = _fastRotateSpeed;
-		LeanTween.scale (gameObject, _bigScale, 2.5f).setEase (LeanTweenType.easeOutSine);
+		LeanTween.cancel (gameObject);
+		LeanTween.scale (gameObject, _bigScale, 1f).setEase (LeanTweenType.easeOutSine);
 	}
 
 	public void setToClosed() {
 		_isOpen = false;
 		_rotateSpeed = _slowRotateSpeed;
+		LeanTween.cancel (gameObject);
 		LeanTween.scale (gameObject, _originalScale, .5f).setEase (LeanTweenType.easeOutSine);
 	}
 

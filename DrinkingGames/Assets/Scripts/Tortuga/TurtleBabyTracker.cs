@@ -49,16 +49,19 @@ public class TurtleBabyTracker : TurtleScript {
 				turtleBaby.wander = false;
 				turtleBaby.followTurtle = true;
 				turtleBaby.lightOn(false);
+				checkBabiesAndSetGoal();
 			}
 				
+
 		}
 
 
 		if (coll.gameObject.tag == "Crab") {
 			StartCoroutine(showHurtColor());
+			checkBabiesAndSetGoal();
+
 		}
 
-		checkBabiesAndSetGoal();
 
 	}
 	
@@ -75,8 +78,10 @@ public class TurtleBabyTracker : TurtleScript {
 
 	void checkBabiesAndSetGoal() {
 		if (allBabiesOnBoard()) {
+			print ("setting to open");
 			goal.setToOpen();
 		} else {
+			print ("setting to closed");
 			goal.setToClosed();
 		}
 	}
