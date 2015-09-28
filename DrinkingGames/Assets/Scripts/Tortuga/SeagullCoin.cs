@@ -27,12 +27,12 @@ public class SeagullCoin : MonoBehaviour {
 		if (coll.gameObject.tag == "TurtleParent") {
 
 			if (coll.gameObject.GetComponent<TurtleScript>().team == TurtleScript.Team.Blue) {
-				_seagull.setTurtleToAttack(_greenTurtleParent);
+				_seagull.attackTurtle(_greenTurtleParent);
 			} else {
-				_seagull.setTurtleToAttack(_blueTurtleParent);
+				_seagull.attackTurtle(_blueTurtleParent);
 			}
 
-			_seagull.attackTurtle();
+//			_seagull.attackTurtle();
 		}
 	}
 

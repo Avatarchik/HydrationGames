@@ -9,9 +9,7 @@ public class TurtleBaby : TurtleScript {
 	public BabyContainer babyContainer;
 	public bool followTurtle = false;
 	public bool wander = false;
-	private bool skidCoroutineRunning = false;
 	public Transform positionToFollow;
-	private Vector3 _rotateSpeed;
 	public Rigidbody2D _rb2D;
 	public Vector2 moveTo;
 	public Transform followPosition;
@@ -40,10 +38,7 @@ public class TurtleBaby : TurtleScript {
 
 		keepInRange = true;
 		followTurtle = false;
-		_rotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * 360f);
 		lightOn (true);
-		//StartCoroutine(skidToWanderTarget());
-
 	}
 	
 	// Update is called once per frame
@@ -52,13 +47,9 @@ public class TurtleBaby : TurtleScript {
 			_maxSpeed = 4f;
 			followObject(positionToFollow);
 		} else {
-			//if (!wander && !skidCoroutineRunning) {
-			//	StartCoroutine(skidToWanderTarget());
-			//} else {
-				_maxSpeed = 2f;
-				followObject(debugPoint.transform);
-				OscillateHalo(3f,1f);
-			//}
+			_maxSpeed = 2f;
+			followObject(debugPoint.transform);
+			OscillateHalo(3f,1f);
 		}
 	}
 
@@ -71,31 +62,8 @@ public class TurtleBaby : TurtleScript {
 		} 
 	}
 
-	public IEnumerator skidToWanderTarget() {
-		skidCoroutineRunning = true;
-		Vector3 randomPosition = new Vector3 (Random.Range (-3f,3f), Random.Range(-3f,3f));
-		Debug.DrawLine (transform.position, randomPosition, Color.red, 20f);
-
-//		LeanTween.move (gameObject,randomPosition,1f);
-		_rb2D.AddForce ((randomPosition - gameObject.transform.position).normalized * 4f, ForceMode2D.Impulse);
-
-		while (Vector2.Distance(gameObject.transform.position, randomPosition) > .5f) {
-			transform.Rotate(Vector3.back, 360*Time.deltaTime);
-			yield return new WaitForEndOfFrame();
-		}
-
-		yield return null;
-		wander = true;
-		skidCoroutineRunning = false;
-
-	}
-
 	public void lightOn(bool on) {
-
-
-			_light.enabled = on;
-	
-
+		_light.enabled = on;
 	}
 
 	

@@ -6,7 +6,7 @@ public class Seagull : MonoBehaviour {
 	private Rigidbody2D _rb2D;
 
 	public bool attack;
-	public GameObject turtleToAttack;
+	//public GameObject turtleToAttack;
 
 	void Start () {
 		_rb2D = GetComponent<Rigidbody2D> ();
@@ -27,11 +27,11 @@ public class Seagull : MonoBehaviour {
 		}
 	}
 
-	public void setTurtleToAttack(GameObject turtle) {
-		turtleToAttack = turtle;
-	}
+//	public void setTurtleToAttack() {
+//		turtleToAttack = turtle;
+//	}
 
-	public void attackTurtle() {
+	public void attackTurtle(GameObject turtleToAttack) {
 		Vector2 attackVel = (turtleToAttack.transform.position - transform.position);
 		_rb2D.velocity = attackVel.normalized * 5f;
 		faceDirectionOfMovement ();
