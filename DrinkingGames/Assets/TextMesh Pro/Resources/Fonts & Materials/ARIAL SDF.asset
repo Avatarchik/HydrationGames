@@ -29,19 +29,11 @@ Material:
         second: 0
       data:
         first:
-          name: _UnderlayOffsetX
+          name: _OutlineWidth
         second: 0
       data:
         first:
-          name: _UnderlayOffsetY
-        second: 0
-      data:
-        first:
-          name: _UnderlayDilate
-        second: 0
-      data:
-        first:
-          name: _UnderlaySoftness
+          name: _OutlineSoftness
         second: 0
       data:
         first:
@@ -53,12 +45,28 @@ Material:
         second: .5
       data:
         first:
-          name: _OutlineWidth
+          name: _ShaderFlags
         second: 0
       data:
         first:
-          name: _OutlineSoftness
-        second: 0
+          name: _ScaleRatioA
+        second: .909090936
+      data:
+        first:
+          name: _ScaleRatioB
+        second: 1
+      data:
+        first:
+          name: _ScaleRatioC
+        second: .909090936
+      data:
+        first:
+          name: _TextureWidth
+        second: 1024
+      data:
+        first:
+          name: _TextureHeight
+        second: 1024
       data:
         first:
           name: _GradientScale
@@ -77,12 +85,28 @@ Material:
         second: .875
       data:
         first:
-          name: _TextureWidth
-        second: 1024
+          name: _VertexOffsetX
+        second: 0
       data:
         first:
-          name: _TextureHeight
-        second: 1024
+          name: _VertexOffsetY
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetX
+        second: 0
+      data:
+        first:
+          name: _UnderlayOffsetY
+        second: 0
+      data:
+        first:
+          name: _UnderlayDilate
+        second: 0
+      data:
+        first:
+          name: _UnderlaySoftness
+        second: 0
       data:
         first:
           name: _MaskID
@@ -97,36 +121,12 @@ Material:
         second: 0
       data:
         first:
-          name: _VertexOffsetX
-        second: 0
-      data:
-        first:
-          name: _VertexOffsetY
-        second: 0
-      data:
-        first:
           name: _Stencil
         second: 0
       data:
         first:
           name: _StencilComp
         second: 8
-      data:
-        first:
-          name: _ShaderFlags
-        second: 0
-      data:
-        first:
-          name: _ScaleRatioA
-        second: .909090936
-      data:
-        first:
-          name: _ScaleRatioB
-        second: 1
-      data:
-        first:
-          name: _ScaleRatioC
-        second: .909090936
       data:
         first:
           name: _StencilOp
@@ -146,12 +146,12 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _UnderlayColor
-        second: {r: 0, g: 0, b: 0, a: .5}
-      data:
-        first:
           name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _UnderlayColor
+        second: {r: 0, g: 0, b: 0, a: .5}
       data:
         first:
           name: _MaskCoord
@@ -165,11 +165,12 @@ Texture2D:
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
+  serializedVersion: 2
   m_Width: 1024
   m_Height: 1024
   m_CompleteImageSize: 1048576
   m_TextureFormat: 1
-  m_MipMap: 0
+  m_MipCount: 1
   m_IsReadable: 1
   m_ReadAllowed: 1
   m_AlphaIsTransparency: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
   m_Name: ARIAL SDF
   m_EditorClassIdentifier: 
+  fontAssetType: 0
   m_fontInfo:
     Name: Arial
     PointSize: 85
@@ -209,7 +211,7 @@ MonoBehaviour:
     SubSize: .5
     Underline: -8.44999981
     UnderlineThickness: 6.22558594
-    TabWidth: 118.125
+    TabWidth: 106.25
     CharacterCount: 219
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -218,7 +220,7 @@ MonoBehaviour:
   material: {fileID: 2100000}
   materialHashCode: 916660623
   m_glyphInfoList:
-  - id: 32
+  - id: 160
     x: 11
     y: 1034
     width: 23.625
@@ -2019,5 +2021,6 @@ MonoBehaviour:
   propertiesChanged: 0
   NormalStyle: 0
   BoldStyle: .75
+  boldSpacing: 7
   ItalicStyle: 20
   TabSize: 5

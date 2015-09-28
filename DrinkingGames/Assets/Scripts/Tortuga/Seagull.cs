@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Seagull : MonoBehaviour {
 
-	private Rigidbody2D _rb2D;
 
+	private Rigidbody2D _rb2D;
 	public bool attack;
-	//public GameObject turtleToAttack;
+	public GameObject turtleToAttack;
 
 	void Start () {
 		_rb2D = GetComponent<Rigidbody2D> ();
@@ -18,7 +18,7 @@ public class Seagull : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (coll.gameObject == turtleToAttack) {
-			TurtleBabyTracker babyTracker = turtleToAttack.GetComponent<TurtleBabyTracker>();
+			TurtleBabyTracker babyTracker = coll.GetComponent<TurtleBabyTracker>();
 			int babiesToLose = babyTracker.babiesOnBoard.Count;
 			for (int i = 0; i < babiesToLose; i++) {
 			
@@ -31,8 +31,9 @@ public class Seagull : MonoBehaviour {
 //		turtleToAttack = turtle;
 //	}
 
-	public void attackTurtle(GameObject turtleToAttack) {
-		Vector2 attackVel = (turtleToAttack.transform.position - transform.position);
+	public void attackTurtle(GameObject t) {
+		turtleToAttack = t;
+		Vector2 attackVel = (t.transform.position - transform.position);
 		_rb2D.velocity = attackVel.normalized * 5f;
 		faceDirectionOfMovement ();
 	}

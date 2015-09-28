@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords: BEVEL_ON GLOW_ON MASK_OFF UNDERLAY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -18,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2835806, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+          m_Texture: {fileID: 2835806, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -52,108 +53,12 @@ Material:
     m_Floats:
       data:
         first:
-          name: _FaceDilate
-        second: .100000001
-      data:
-        first:
-          name: _UnderlayOffsetX
-        second: .42899999
-      data:
-        first:
-          name: _UnderlayOffsetY
-        second: -.444000006
-      data:
-        first:
-          name: _UnderlayDilate
-        second: 0
-      data:
-        first:
-          name: _UnderlaySoftness
-        second: .0970000029
-      data:
-        first:
-          name: _WeightNormal
-        second: 0
-      data:
-        first:
-          name: _WeightBold
-        second: .75
-      data:
-        first:
-          name: _OutlineWidth
-        second: .150000006
-      data:
-        first:
-          name: _OutlineSoftness
-        second: 0
-      data:
-        first:
-          name: _GradientScale
-        second: 11
-      data:
-        first:
-          name: _ScaleX
-        second: 1
-      data:
-        first:
-          name: _ScaleY
-        second: 1
-      data:
-        first:
-          name: _PerspectiveFilter
-        second: .875
-      data:
-        first:
-          name: _TextureWidth
-        second: 1024
-      data:
-        first:
-          name: _TextureHeight
-        second: 1024
-      data:
-        first:
-          name: _MaskID
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessX
-        second: 0
-      data:
-        first:
-          name: _MaskSoftnessY
-        second: 0
-      data:
-        first:
-          name: _VertexOffsetX
-        second: 0
-      data:
-        first:
-          name: _VertexOffsetY
-        second: 0
-      data:
-        first:
           name: _Stencil
         second: 0
       data:
         first:
           name: _StencilComp
         second: 8
-      data:
-        first:
-          name: _ShaderFlags
-        second: 0
-      data:
-        first:
-          name: _ScaleRatioA
-        second: .909090936
-      data:
-        first:
-          name: _ScaleRatioB
-        second: .357142836
-      data:
-        first:
-          name: _ScaleRatioC
-        second: .818181813
       data:
         first:
           name: _StencilOp
@@ -168,34 +73,6 @@ Material:
         second: 255
       data:
         first:
-          name: _FaceShininess
-        second: 1
-      data:
-        first:
-          name: _Bevel
-        second: 1
-      data:
-        first:
-          name: _LightAngle
-        second: 3.14199996
-      data:
-        first:
-          name: _GlowOffset
-        second: .852999985
-      data:
-        first:
-          name: _GlowPower
-        second: .75
-      data:
-        first:
-          name: _GlowOuter
-        second: .379000008
-      data:
-        first:
-          name: _OutlineShininess
-        second: .231000006
-      data:
-        first:
           name: _FaceUVSpeedX
         second: 0
       data:
@@ -204,12 +81,28 @@ Material:
         second: 0
       data:
         first:
+          name: _FaceDilate
+        second: .100000001
+      data:
+        first:
           name: _OutlineUVSpeedX
         second: 0
       data:
         first:
           name: _OutlineUVSpeedY
         second: 0
+      data:
+        first:
+          name: _OutlineWidth
+        second: .150000006
+      data:
+        first:
+          name: _OutlineSoftness
+        second: 0
+      data:
+        first:
+          name: _Bevel
+        second: 1
       data:
         first:
           name: _BevelOffset
@@ -228,16 +121,8 @@ Material:
         second: .467000008
       data:
         first:
-          name: _BumpOutline
-        second: .108000003
-      data:
-        first:
-          name: _BumpFace
-        second: .103
-      data:
-        first:
-          name: _GlowInner
-        second: .0759999976
+          name: _LightAngle
+        second: 3.14199996
       data:
         first:
           name: _SpecularPower
@@ -254,6 +139,122 @@ Material:
         first:
           name: _Ambient
         second: 0
+      data:
+        first:
+          name: _BumpOutline
+        second: .108000003
+      data:
+        first:
+          name: _BumpFace
+        second: .103
+      data:
+        first:
+          name: _UnderlayOffsetX
+        second: .42899999
+      data:
+        first:
+          name: _UnderlayOffsetY
+        second: -.444000006
+      data:
+        first:
+          name: _UnderlayDilate
+        second: 0
+      data:
+        first:
+          name: _UnderlaySoftness
+        second: .0970000029
+      data:
+        first:
+          name: _GlowOffset
+        second: .852999985
+      data:
+        first:
+          name: _GlowInner
+        second: .0759999976
+      data:
+        first:
+          name: _GlowOuter
+        second: .379000008
+      data:
+        first:
+          name: _GlowPower
+        second: .75
+      data:
+        first:
+          name: _WeightNormal
+        second: 0
+      data:
+        first:
+          name: _WeightBold
+        second: .75
+      data:
+        first:
+          name: _ShaderFlags
+        second: 0
+      data:
+        first:
+          name: _ScaleRatioA
+        second: .909090936
+      data:
+        first:
+          name: _ScaleRatioB
+        second: .357142836
+      data:
+        first:
+          name: _ScaleRatioC
+        second: .818181813
+      data:
+        first:
+          name: _TextureWidth
+        second: 1024
+      data:
+        first:
+          name: _TextureHeight
+        second: 1024
+      data:
+        first:
+          name: _GradientScale
+        second: 11
+      data:
+        first:
+          name: _ScaleX
+        second: 1
+      data:
+        first:
+          name: _ScaleY
+        second: 1
+      data:
+        first:
+          name: _PerspectiveFilter
+        second: .875
+      data:
+        first:
+          name: _VertexOffsetX
+        second: 0
+      data:
+        first:
+          name: _VertexOffsetY
+        second: 0
+      data:
+        first:
+          name: _MaskID
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessX
+        second: 0
+      data:
+        first:
+          name: _MaskSoftnessY
+        second: 0
+      data:
+        first:
+          name: _FaceShininess
+        second: 1
+      data:
+        first:
+          name: _OutlineShininess
+        second: .231000006
     m_Colors:
       data:
         first:
@@ -265,24 +266,8 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _UnderlayColor
-        second: {r: 0, g: 0, b: 0, a: .674509823}
-      data:
-        first:
           name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _MaskCoord
-        second: {r: 37.2553101, g: 106.11821, b: 135.150925, a: 25.9317818}
-      data:
-        first:
-          name: _EnvMatrixRotation
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
-          name: _GlowColor
-        second: {r: 0, g: .99999994, b: .00689649535, a: .501960814}
       data:
         first:
           name: _SpecularColor
@@ -295,3 +280,19 @@ Material:
         first:
           name: _ReflectOutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _EnvMatrixRotation
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _UnderlayColor
+        second: {r: 0, g: 0, b: 0, a: .674509823}
+      data:
+        first:
+          name: _GlowColor
+        second: {r: 0, g: .99999994, b: .00689649535, a: .501960814}
+      data:
+        first:
+          name: _MaskCoord
+        second: {r: 37.2553101, g: 106.11821, b: 135.150925, a: 25.9317818}

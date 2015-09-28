@@ -1234,7 +1234,7 @@ namespace TMPro
             int hashCode = 0;
 
             for (int i = 0; i < s.Length; i++)
-                hashCode = (hashCode << 3) - hashCode + s[i];
+                hashCode = (hashCode << 5) - hashCode + s[i];
 
             return hashCode;
         }

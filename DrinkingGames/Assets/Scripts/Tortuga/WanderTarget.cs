@@ -32,7 +32,6 @@ public class WanderTarget : MonoBehaviour {
 
 			float perlin = Mathf.PerlinNoise(Time.fixedTime+_perlin1,Time.fixedTime+_perlin2);
 			float clampedPerlin = ExtensionMethods.Remap(perlin, 0f,1f,-1f,1f) * 4f;
-			print (clampedPerlin);
 
 			angle+= clampedPerlin;
 			if (angle > 360) {

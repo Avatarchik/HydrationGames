@@ -7,8 +7,6 @@ Project("{8289343C-A528-FD69-5832-99FF5691F74E}") = "DrinkingGames", "Assembly-C
 EndProject
 Project("{8289343C-A528-FD69-5832-99FF5691F74E}") = "DrinkingGames", "Assembly-CSharp-Editor.csproj", "{608955C2-D6AB-0994-6D2E-766B89C0983E}"
 EndProject
-Project("{8289343C-A528-FD69-5832-99FF5691F74E}") = "DrinkingGames", "Assembly-UnityScript.unityproj", "{433F648E-26EA-E5D5-822A-61206FB20C1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,15 +25,11 @@ Global
 		{608955C2-D6AB-0994-6D2E-766B89C0983E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{608955C2-D6AB-0994-6D2E-766B89C0983E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{608955C2-D6AB-0994-6D2E-766B89C0983E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{433F648E-26EA-E5D5-822A-61206FB20C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{433F648E-26EA-E5D5-822A-61206FB20C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{433F648E-26EA-E5D5-822A-61206FB20C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{433F648E-26EA-E5D5-822A-61206FB20C1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																																									GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																																			GlobalSection(MonoDevelopProperties) = preSolution
 =======
 >>>>>>> Stashed changes
 <<<<<<< Updated upstream

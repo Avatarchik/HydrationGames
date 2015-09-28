@@ -155,6 +155,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -273,7 +274,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_text: The larger title line is done using the <<#a0ffa0>size=%150</color>> tag.
     Alignment of the tag examples is done using the <<#a0ffa0>pos=xx.x</color>> tag.
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -318,28 +319,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -504,7 +489,7 @@ MonoBehaviour:
     Line height<pos=55%><<#ffff00>line-height=100</color>> <<#ffff00>/line-height</color>>
 
     No Line-Break<pos=55%><<#ffff00>nobr</color>> <<#ffff00>/nobr</color>>'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -549,28 +534,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}

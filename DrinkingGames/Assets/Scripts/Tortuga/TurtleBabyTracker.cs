@@ -4,16 +4,28 @@ using System.Collections.Generic;
 
 public class TurtleBabyTracker : TurtleScript {
 
+	private bool babyLost = false;
 	public Goal goal;
 	private int numBabiesNeeded = 3;
 	public int numBabiesOnBoard = 0;
 	public List<GameObject> babiesOnBoard;
 	public TurtleControls turtleControls;
-	bool babyLost = false;
-	
+
+	private SpriteRenderer _spriteRenderer;
+	[SerializeField]
+	private Color originalColor;
+	[SerializeField]
+	private Color hurtColor;
+
+
+
 	// Use this for initialization
 	void Start () {
 		turtleControls = GetComponent<TurtleControls> ();
+		_spriteRenderer = GetComponent<SpriteRenderer> ();
+
+		originalColor = _spriteRenderer.color;
+		hurtColor = new Color (originalColor.r, .9f, originalColor.b, .4f);
 	}
 	
 	// Update is called once per frame
@@ -39,6 +51,11 @@ public class TurtleBabyTracker : TurtleScript {
 				turtleBaby.lightOn(false);
 			}
 				
+		}
+
+
+		if (coll.gameObject.tag == "Crab") {
+			StartCoroutine(showHurtColor());
 		}
 
 		checkBabiesAndSetGoal();
@@ -67,5 +84,12 @@ public class TurtleBabyTracker : TurtleScript {
 	bool allBabiesOnBoard() {
 		bool allBabiesOnBoard = (babiesOnBoard.Count == numBabiesNeeded) ? true : false;
 		return allBabiesOnBoard;
+	}
+
+	IEnumerator showHurtColor() {
+		_spriteRenderer.color = hurtColor;
+		yield return new WaitForSeconds(.1f);
+		_spriteRenderer.color = originalColor;
+
 	}
 }

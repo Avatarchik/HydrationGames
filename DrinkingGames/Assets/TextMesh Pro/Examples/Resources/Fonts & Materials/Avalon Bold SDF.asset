@@ -53,32 +53,8 @@ Material:
     m_Floats:
       data:
         first:
-          name: _Stencil
-        second: 0
-      data:
-        first:
-          name: _StencilComp
-        second: 8
-      data:
-        first:
-          name: _StencilOp
-        second: 0
-      data:
-        first:
-          name: _StencilReadMask
-        second: 255
-      data:
-        first:
-          name: _StencilWriteMask
-        second: 255
-      data:
-        first:
           name: _FaceDilate
         second: .100000001
-      data:
-        first:
-          name: _FaceShininess
-        second: .800000012
       data:
         first:
           name: _UnderlayOffsetX
@@ -177,6 +153,14 @@ Material:
         second: 0
       data:
         first:
+          name: _Stencil
+        second: 0
+      data:
+        first:
+          name: _StencilComp
+        second: 8
+      data:
+        first:
           name: _ShaderFlags
         second: 0
       data:
@@ -191,6 +175,18 @@ Material:
         first:
           name: _ScaleRatioC
         second: .830769241
+      data:
+        first:
+          name: _StencilOp
+        second: 0
+      data:
+        first:
+          name: _StencilReadMask
+        second: 255
+      data:
+        first:
+          name: _StencilWriteMask
+        second: 255
       data:
         first:
           name: _FaceUVSpeedX
@@ -225,18 +221,6 @@ Material:
         second: 0
       data:
         first:
-          name: _BumpOutline
-        second: 0
-      data:
-        first:
-          name: _BumpFace
-        second: 0
-      data:
-        first:
-          name: _GlowInner
-        second: .0500000007
-      data:
-        first:
           name: _SpecularPower
         second: 2
       data:
@@ -251,6 +235,22 @@ Material:
         first:
           name: _Ambient
         second: .5
+      data:
+        first:
+          name: _BumpOutline
+        second: 0
+      data:
+        first:
+          name: _BumpFace
+        second: 0
+      data:
+        first:
+          name: _GlowInner
+        second: .0500000007
+      data:
+        first:
+          name: _FaceShininess
+        second: .800000012
       data:
         first:
           name: _OutlineShininess
@@ -286,16 +286,16 @@ Material:
         second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
+          name: _SpecularColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
           name: _ReflectFaceColor
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
           name: _ReflectOutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
-      data:
-        first:
-          name: _SpecularColor
-        second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!28 &2879340
 Texture2D:
   m_ObjectHideFlags: 1
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
   m_Name: Avalon Bold SDF
   m_EditorClassIdentifier: 
+  fontAssetType: 1
   m_fontInfo:
     Name: Avalon
     PointSize: 134
@@ -358,7 +359,7 @@ MonoBehaviour:
   material: {fileID: 2113820}
   materialHashCode: -598019636
   m_glyphInfoList:
-  - id: 32
+  - id: 160
     x: 13
     y: 1036
     width: 37.53125

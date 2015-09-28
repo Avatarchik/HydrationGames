@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords: MASK_OFF
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -19,6 +20,34 @@ Material:
           name: _MainTex
         second:
           m_Texture: {fileID: 2800000}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _FaceTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _OutlineTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -84,6 +113,26 @@ Material:
         second: 1024
       data:
         first:
+          name: _Bevel
+        second: .5
+      data:
+        first:
+          name: _LightAngle
+        second: 3.14159989
+      data:
+        first:
+          name: _GlowOffset
+        second: 0
+      data:
+        first:
+          name: _GlowPower
+        second: .75
+      data:
+        first:
+          name: _GlowOuter
+        second: .0500000007
+      data:
+        first:
           name: _MaskID
         second: 0
       data:
@@ -138,7 +187,75 @@ Material:
         first:
           name: _StencilWriteMask
         second: 255
+      data:
+        first:
+          name: _FaceUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _FaceUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedX
+        second: 0
+      data:
+        first:
+          name: _OutlineUVSpeedY
+        second: 0
+      data:
+        first:
+          name: _BevelOffset
+        second: 0
+      data:
+        first:
+          name: _BevelWidth
+        second: 0
+      data:
+        first:
+          name: _BevelClamp
+        second: 0
+      data:
+        first:
+          name: _BevelRoundness
+        second: 0
+      data:
+        first:
+          name: _SpecularPower
+        second: 2
+      data:
+        first:
+          name: _Reflectivity
+        second: 10
+      data:
+        first:
+          name: _Diffuse
+        second: .5
+      data:
+        first:
+          name: _Ambient
+        second: .5
+      data:
+        first:
+          name: _BumpOutline
+        second: 0
+      data:
+        first:
+          name: _BumpFace
+        second: 0
+      data:
+        first:
+          name: _GlowInner
+        second: .0500000007
+      data:
+        first:
+          name: _ColorMask
+        second: 15
     m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _FaceColor
@@ -153,8 +270,28 @@ Material:
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
+          name: _EnvMatrixRotation
+        second: {r: 0, g: 0, b: 0, a: 0}
+      data:
+        first:
+          name: _GlowColor
+        second: {r: 0, g: 1, b: 0, a: .5}
+      data:
+        first:
           name: _MaskCoord
         second: {r: 0, g: 0, b: 100000, a: 100000}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _ReflectFaceColor
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _ReflectOutlineColor
+        second: {r: 0, g: 0, b: 0, a: 1}
 --- !u!28 &2800000
 Texture2D:
   m_ObjectHideFlags: 1
@@ -194,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
   m_Name: Bangers SDF
   m_EditorClassIdentifier: 
+  fontAssetType: 1
   m_fontInfo:
     Name: Bangers
     PointSize: 137
@@ -208,7 +346,7 @@ MonoBehaviour:
     SubSize: .5
     Underline: -12.2200003
     UnderlineThickness: 5
-    TabWidth: 26.75
+    TabWidth: 267.5
     CharacterCount: 95
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -217,10 +355,10 @@ MonoBehaviour:
   material: {fileID: 2100000}
   materialHashCode: 1329379268
   m_glyphInfoList:
-  - id: 32
+  - id: 160
     x: 11
     y: 1034
-    width: 24.1875
+    width: 26.75
     height: 145.6875
     xOffset: 0
     yOffset: 120.9375

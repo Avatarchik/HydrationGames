@@ -113,6 +113,26 @@ Material:
         second: 512
       data:
         first:
+          name: _Bevel
+        second: .5
+      data:
+        first:
+          name: _LightAngle
+        second: 3.14159989
+      data:
+        first:
+          name: _GlowOffset
+        second: 0
+      data:
+        first:
+          name: _GlowPower
+        second: .75
+      data:
+        first:
+          name: _GlowOuter
+        second: 0
+      data:
+        first:
           name: _MaskID
         second: 0
       data:
@@ -169,26 +189,6 @@ Material:
         second: 255
       data:
         first:
-          name: _Bevel
-        second: .5
-      data:
-        first:
-          name: _LightAngle
-        second: 3.14159989
-      data:
-        first:
-          name: _GlowOffset
-        second: 0
-      data:
-        first:
-          name: _GlowPower
-        second: .75
-      data:
-        first:
-          name: _GlowOuter
-        second: 0
-      data:
-        first:
           name: _FaceUVSpeedX
         second: 0
       data:
@@ -221,18 +221,6 @@ Material:
         second: 0
       data:
         first:
-          name: _BumpOutline
-        second: 0
-      data:
-        first:
-          name: _BumpFace
-        second: 0
-      data:
-        first:
-          name: _GlowInner
-        second: .0120000001
-      data:
-        first:
           name: _SpecularPower
         second: 2
       data:
@@ -247,6 +235,18 @@ Material:
         first:
           name: _Ambient
         second: .5
+      data:
+        first:
+          name: _BumpOutline
+        second: 0
+      data:
+        first:
+          name: _BumpFace
+        second: 0
+      data:
+        first:
+          name: _GlowInner
+        second: .0120000001
     m_Colors:
       data:
         first:
@@ -262,16 +262,16 @@ Material:
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
-          name: _MaskCoord
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
           name: _EnvMatrixRotation
         second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _GlowColor
         second: {r: 0, g: 1, b: 0, a: .5}
+      data:
+        first:
+          name: _MaskCoord
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _SpecularColor
@@ -323,6 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74dfce233ddb29b4294c3e23c1d3650d, type: 3}
   m_Name: ARCADE SDF
   m_EditorClassIdentifier: 
+  fontAssetType: 1
   m_fontInfo:
     Name: Arcade
     PointSize: 104
@@ -346,7 +347,7 @@ MonoBehaviour:
   material: {fileID: 2173394}
   materialHashCode: -1768635902
   m_glyphInfoList:
-  - id: 32
+  - id: 160
     x: 6
     y: 517
     width: 54.09375

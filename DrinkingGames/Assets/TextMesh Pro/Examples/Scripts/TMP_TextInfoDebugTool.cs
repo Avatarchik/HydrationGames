@@ -16,7 +16,7 @@ namespace TMPro.Examples
         public bool ShowWords;
         public bool ShowLinks;
         public bool ShowLines;
-        //public bool ShowBounds;
+        public bool ShowBounds;
         [Space(10)]
         [TextArea(2, 2)]
         public string ObjectStats;
@@ -126,14 +126,20 @@ namespace TMPro.Examples
 
 
             // Draw Quads around the bounds of the text
-            //if (ShowBounds)
-            //{
-                // Get Bottom Left and Top Right position of each word
-                //Vector3 bottomLeft = m_Transform.position - m_TextMeshPro.bounds.extents + m_TextMeshPro.bounds.center;
-                //Vector3 topRight = m_Transform.position + m_TextMeshPro.bounds.extents + m_TextMeshPro.bounds.center;
-
-                //DrawRectangle(bottomLeft, topRight, new Color(1, 0.5f, 0));
-            //}
+            #region Draw Bounds
+            if (ShowBounds)
+            {
+                switch (m_textObjectType)
+                {
+                    case objectType.TextMeshPro:
+                        DrawBounds(m_TextMeshPro);
+                        break;
+                    case objectType.TextMeshProUI:
+                        DrawBounds(m_TextMeshProUI);
+                        break;
+                }
+            }
+            #endregion
         }
 
 
@@ -425,7 +431,7 @@ namespace TMPro.Examples
                     }
                 }
 
-                //Debug.Log(wInfo.GetWord(m_TextMeshPro.textInfo.characterInfo));
+                //Debug.Log(wInfo.GetWord(textInfo.characterInfo));
             }
         }
 
@@ -714,43 +720,60 @@ namespace TMPro.Examples
 
                 if (!isLineVisible) continue;
 
-                //if (ShowLinesOnlyVisibleCharacters)
-                //{
-                    // Get Bottom Left and Top Right position of each line
-                    float ascender = lineInfo.ascender; // textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLine;
-                    float descender = lineInfo.descender; // textInfo.characterInfo[lineInfo.lastCharacterIndex].topLine;
-                    Vector3 bottomLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, descender, 0));
-                    Vector3 topLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, ascender, 0));
-                    Vector3 topRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, ascender, 0));
-                    Vector3 bottomRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, descender, 0));
+                // Get Bottom Left and Top Right position of each line
+                float ascender = lineInfo.ascender; // textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLine;
+                float descender = lineInfo.descender; // textInfo.characterInfo[lineInfo.lastCharacterIndex].topLine;
+                Vector3 bottomLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, descender, 0));
+                Vector3 topLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, ascender, 0));
+                Vector3 topRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, ascender, 0));
+                Vector3 bottomRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, descender, 0));
 
-                    DrawRectangle(bottomLeft, topLeft, topRight, bottomRight, Color.green);
+                DrawDottedRectangle(bottomLeft, topLeft, topRight, bottomRight, Color.green);
 
-                    Vector3 baselineStart = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, textInfo.characterInfo[lineInfo.firstCharacterIndex].baseLine, 0));
-                    Vector3 baselineEnd = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, textInfo.characterInfo[lineInfo.lastCharacterIndex].baseLine, 0));
+                Vector3 baselineStart = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstCharacterIndex].bottomLeft.x, textInfo.characterInfo[lineInfo.firstCharacterIndex].baseLine, 0));
+                Vector3 baselineEnd = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastCharacterIndex].topRight.x, textInfo.characterInfo[lineInfo.firstCharacterIndex].baseLine, 0));
 
-                    Gizmos.color = Color.cyan;
-                    Gizmos.DrawLine(baselineStart, baselineEnd);
-                //}
-                //else
-                //{
-                    // Get Bottom Left and Top Right position of each line
-                    //float ascender = lineInfo.ascender; // textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLine;
-                    //float descender = lineInfo.descender; // textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topLine;
-                    //Vector3 bottomLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, descender, 0));
-                    //Vector3 topLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, ascender, 0));
-                    //Vector3 topRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, ascender, 0));
-                    //Vector3 bottomRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, descender, 0));
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(baselineStart, baselineEnd);
+                
+                // Draw first and last character of each line
+                bottomLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, descender, 0));
+                topLeft = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, ascender, 0));
+                topRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, ascender, 0));
+                bottomRight = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, descender, 0));
 
-                    //DrawRectangle(bottomLeft, topLeft, topRight, bottomRight, Color.green);
+                DrawRectangle(bottomLeft, topLeft, topRight, bottomRight, new Color32(0, 255, 0, 255));
 
-                    //Vector3 baselineStart = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].baseLine, 0));
-                    //Vector3 baselineEnd = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].baseLine, 0));
+                //Vector3 baselineStart = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].bottomLeft.x, textInfo.characterInfo[lineInfo.firstVisibleCharacterIndex].baseLine, 0));
+                //Vector3 baselineEnd = m_Transform.TransformPoint(new Vector3(textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].topRight.x, textInfo.characterInfo[lineInfo.lastVisibleCharacterIndex].baseLine, 0));
 
-                    //Gizmos.color = Color.cyan;
-                    //Gizmos.DrawLine(baselineStart, baselineEnd);
-                //}
+                //Gizmos.color = Color.cyan;
+                //Gizmos.DrawLine(baselineStart, baselineEnd);
             }
+        }
+
+
+
+        void DrawBounds(TextMeshPro text)
+        {
+            // Get Bottom Left and Top Right position of each word
+            //Vector3 bottomLeft = text.transform.position - text.bounds.extents + text.bounds.center;
+            //Vector3 topRight = text.transform.position + text.bounds.extents + text.bounds.center;
+            Vector3 bottomLeft = text.renderer.bounds.center - text.renderer.bounds.extents;
+            Vector3 topRight = text.renderer.bounds.center + text.renderer.bounds.extents;
+
+
+            DrawRectangle(bottomLeft, topRight, new Color(1, 0.5f, 0));
+        }
+
+
+        void DrawBounds(TextMeshProUGUI text)
+        {
+            // Get Bottom Left and Top Right position of each word
+            Vector3 bottomLeft = text.transform.position - text.bounds.extents + text.bounds.center;
+            Vector3 topRight = text.transform.position + text.bounds.extents + text.bounds.center;
+
+            DrawRectangle(bottomLeft, topRight, new Color(1, 0.5f, 0));
         }
 
 
@@ -775,6 +798,22 @@ namespace TMPro.Examples
             Gizmos.DrawLine(tl, tr);
             Gizmos.DrawLine(tr, br);
             Gizmos.DrawLine(br, bl);
+        }
+
+
+        // Draw Rectangles
+        void DrawDottedRectangle(Vector3 bl, Vector3 tl, Vector3 tr, Vector3 br, Color color)
+        {
+#if UNITY_EDITOR
+            var cam = Camera.current;
+            float dotSpacing = (cam.WorldToScreenPoint(br).x - cam.WorldToScreenPoint(bl).x) / 75f;
+            UnityEditor.Handles.color = color;
+
+            UnityEditor.Handles.DrawDottedLine(bl, tl, dotSpacing);
+            UnityEditor.Handles.DrawDottedLine(tl, tr, dotSpacing);
+            UnityEditor.Handles.DrawDottedLine(tr, br, dotSpacing);
+            UnityEditor.Handles.DrawDottedLine(br, bl, dotSpacing);
+#endif
         }
     }
 }

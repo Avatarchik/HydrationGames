@@ -58,8 +58,9 @@ namespace TMPro.Examples
         {
             if (isHoveringObject)
             {
-                
+
                 // Check if Mouse Intersects any of the characters. If so, assign a random color.
+                #region Handle Character Selection
                 int charIndex = TMP_TextUtilities.FindIntersectingCharacter(m_TextMeshPro, Input.mousePosition, m_Camera, true);
            
                 if (charIndex != -1 && charIndex != m_lastIndex && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
@@ -67,9 +68,10 @@ namespace TMPro.Examples
                     m_lastIndex = charIndex;
 
                     Color32 c = new Color32((byte)Random.Range(0, 255), (byte)Random.Range(0, 255), (byte)Random.Range(0, 255), 255);
+
                     int vertexIndex = m_TextMeshPro.textInfo.characterInfo[charIndex].vertexIndex;
 
-                    UIVertex[] uiVertices = m_TextMeshPro.textInfo.characterInfo[charIndex].uiVertices;
+                    UIVertex[] uiVertices = m_TextMeshPro.textInfo.meshInfo.uiVertices;
 
                     uiVertices[vertexIndex + 0].color = c;
                     uiVertices[vertexIndex + 1].color = c;
@@ -82,6 +84,7 @@ namespace TMPro.Examples
                         m_TextMeshPro.inlineGraphicManager.inlineGraphic.canvasRenderer.SetVertices(uiVertices, uiVertices.Length);
 
                 }
+                #endregion
 
 
                 #region Word Selection Handling
@@ -169,12 +172,12 @@ namespace TMPro.Examples
 
                     switch (linkHashCode)
                     {
-                        case 291445: // id_01
+                        case 100041637: // id_01
                             m_TextPopup_RectTransform.position = worldPointInRectangle;
                             m_TextPopup_RectTransform.gameObject.SetActive(true);
                             m_TextPopup_TMPComponent.text = k_LinkText + " ID 01";
                             break;
-                        case 291446: // id_02
+                        case 100041638: // id_02
                             m_TextPopup_RectTransform.position = worldPointInRectangle;
                             m_TextPopup_RectTransform.gameObject.SetActive(true);
                             m_TextPopup_TMPComponent.text = k_LinkText + " ID 02";

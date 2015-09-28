@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+﻿// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
@@ -30,11 +30,13 @@ namespace TMPro
     public enum TMP_CharacterType { Character, Sprite };
 
 
-    // Structure containing information about each Character & related Mesh info for the text object.   
+    // Structure containing information about each Character & related Mesh info for the text object.
     public struct TMP_CharacterInfo
     {   
-        public TMP_CharacterType type;
         public char character;
+        public TMP_CharacterType type;
+        public float pointSize;
+        
         //public short wordNumber;
         public short lineNumber;
         //public short charNumber;
@@ -42,7 +44,7 @@ namespace TMPro
         
         public short index; // Index of character in the input text.
 
-        public UIVertex[] uiVertices;
+        //public UIVertex[] uiVertices;
         public short vertexIndex;
         public TMP_Vertex vertex_TL;
         public TMP_Vertex vertex_BL;
@@ -64,6 +66,7 @@ namespace TMPro
         public Color32 color;
         public FontStyles style;
         public bool isVisible;
+        public bool isIgnoringAlignment;
     }
 
 
@@ -246,6 +249,7 @@ namespace TMPro
         public float width;
         public float marginLeft;
         public float marginRight;
+        public float maxScale;
 
         public TextAlignmentOptions alignment;
         public Extents lineExtents;
@@ -303,7 +307,7 @@ namespace TMPro
     // Structure used for Word Wrapping which tracks the state of execution when the last space or carriage return character was encountered. 
     public struct WordWrapState
     {
-        public int previous_WordBreak;     
+        public int previous_WordBreak;
         public int total_CharacterCount;
         public int visible_CharacterCount;
         public int visible_SpriteCount;
@@ -335,7 +339,18 @@ namespace TMPro
         public Color32 vertexColor;
         public int colorStackIndex;
         public Extents meshExtents;
-        //public Mesh_Extents lineExtents;    
+        //public Mesh_Extents lineExtents;
+    }
+
+
+    /// <summary>
+    /// Structure used to store retrieve the name and hashcode of the font and material
+    /// </summary>
+    public struct TagAttribute
+    {
+        public int startIndex;
+        public int length;
+        public int hashCode;
     }
 
 

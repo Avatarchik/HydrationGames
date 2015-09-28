@@ -200,7 +200,7 @@ MonoBehaviour:
     type can look clean and classy.\n\n<style=Quote><align=left><#ffffa0>\"Text formatting
     and alignment has a huge impact on how people will read and perceive your text.\"</color>\n<size=65%><align=right>-
     Stephan Bouchard</style>"
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 0}
   m_fontStyle: 0
   m_isOverlay: 0
   m_fontColor32:
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_overrideHtmlColors: 0
   m_enableExtraPadding: 1
-  checkPaddingRequired: 0
+  checkPaddingRequired: 1
   m_enableWordWrapping: 1
   m_overflowMode: 0
   m_wordWrappingRatios: .400000006
@@ -243,33 +243,18 @@ MonoBehaviour:
   m_verticalMapping: 0
   m_uvOffset: {x: 0, y: 0}
   m_uvLineOffset: .300000012
-  isInputParsingRequired: 0
-  havePropertiesChanged: 0
+  isInputParsingRequired: 1
+  havePropertiesChanged: 1
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isRightToLeft: 0
   m_inputSource: 0
   m_renderer: {fileID: 955542823}
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_maskType: 0
   m_enableAutoSizing: 0
 --- !u!23 &955542823
@@ -408,7 +393,7 @@ MonoBehaviour:
     type can look clean and classy.\n\n<style=Quote><align=left><#ffffa0>\"Text formatting
     and alignment has a huge impact on how people will read and perceive your text.\"</color>\n<size=65%><align=right>-
     Stephan Bouchard</style>"
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -453,28 +438,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -501,6 +470,8 @@ MonoBehaviour:
   ShowWords: 0
   ShowLinks: 0
   ShowLines: 0
+  ShowBounds: 0
+  ObjectStats: 'Characters: 751   Words: 124   Links: 0   Lines: 19   Spaces: 114'
 --- !u!1 &1728718679
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +614,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10

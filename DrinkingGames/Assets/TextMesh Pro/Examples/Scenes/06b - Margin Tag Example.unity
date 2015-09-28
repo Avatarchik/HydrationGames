@@ -290,7 +290,7 @@ MonoBehaviour:
 
     <margin-right=15%>Or use the <<#FFFF00>margin-right=15%</color>> tag to control
     the right margin.</margin>'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -335,28 +335,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -436,6 +420,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -503,9 +488,9 @@ MonoBehaviour:
   m_text: The margin tag can be defined in <#80ff80>pixel units</color> (px), <#80ff80>font
     units</color> (em) and as <#80ff80>percentage</color> (%) of the width of the
     text container.
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
-  m_sharedMaterial: {fileID: 2100000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
   m_fontColor32:
     serializedVersion: 2
@@ -548,29 +533,13 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_baseMaterial: {fileID: 2100000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   m_margin: {x: 0, y: 0, z: 0, w: 0}
@@ -624,7 +593,7 @@ MonoBehaviour:
 
     <margin-right=15%>Or use the <<#FFFF00>margin-right=15%</color>> tag to control
     the right margin.</margin>'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 0}
   m_fontStyle: 0
   m_isOverlay: 0
   m_fontColor32:
@@ -671,29 +640,14 @@ MonoBehaviour:
   havePropertiesChanged: 1
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isRightToLeft: 0
   m_inputSource: 0
   m_renderer: {fileID: 1562965278}
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_maskType: 0
   m_enableAutoSizing: 0
 --- !u!114 &1562965276

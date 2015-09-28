@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+﻿// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 // Beta Release 0.1.46.Beta 4
@@ -20,7 +20,7 @@ namespace TMPro
     [AddComponentMenu("UI/Inline Graphics Manager", 13)]
     public class InlineGraphicManager : MonoBehaviour
     {
-        
+
         // Sprite Asset used by this component
         public SpriteAsset spriteAsset
         {
@@ -41,12 +41,12 @@ namespace TMPro
         private InlineGraphic m_inlineGraphic;
 
 
-        // CanvasRenderer of child object   
+        // CanvasRenderer of child object
         public CanvasRenderer canvasRenderer
         {
             get { return m_inlineGraphicCanvasRenderer; }
         }
-        [SerializeField] [HideInInspector]      
+        [SerializeField] [HideInInspector]
         private CanvasRenderer m_inlineGraphicCanvasRenderer;
 
        
@@ -57,7 +57,6 @@ namespace TMPro
         }
         private UIVertex[] m_uiVertex;
 
-
         private RectTransform m_inlineGraphicRectTransform;
 
         private TextMeshPro m_TextMeshPro;
@@ -67,12 +66,11 @@ namespace TMPro
         void Awake()
         {
             // Make sure this component is attached to an object which contains a TextMeshPro or TextMeshPro UI Component.
-            if (gameObject.GetComponent<TextMeshPro>() == null && gameObject.GetComponent<TextMeshProUGUI>() == null)           
+            if (gameObject.GetComponent<TextMeshPro>() == null && gameObject.GetComponent<TextMeshProUGUI>() == null)
                 Debug.LogWarning("The InlineGraphics Component must be attached to a TextMesh Pro Object");
 
             // Add a Child GameObject to the TextMeshPro Object if one is not already present.
             AddInlineGraphicsChild();
-       
         }
 
 
@@ -84,13 +82,10 @@ namespace TMPro
             m_uiVertex = new UIVertex[4];
             
 #if UNITY_EDITOR
-            TMPro_EventManager.SPRITE_ASSET_PROPERTY_EVENT += ON_SPRITE_ASSET_PROPERTY_CHANGED;
+            TMPro_EventManager.SPRITE_ASSET_PROPERTY_EVENT.Add(ON_SPRITE_ASSET_PROPERTY_CHANGED);
 #endif
 
             LoadSpriteAsset(m_spriteAsset);
-
-            //m_inlineGraphic.material.renderQueue = 3000;
-                
         }
 
 
@@ -99,7 +94,7 @@ namespace TMPro
             // Should clear the mesh of the child object
 
 #if UNITY_EDITOR
-            TMPro_EventManager.SPRITE_ASSET_PROPERTY_EVENT -= ON_SPRITE_ASSET_PROPERTY_CHANGED;
+            TMPro_EventManager.SPRITE_ASSET_PROPERTY_EVENT.Remove(ON_SPRITE_ASSET_PROPERTY_CHANGED);
 #endif
 
         }
@@ -152,7 +147,11 @@ namespace TMPro
             else
             {
                 // Load Default SpriteAsset
-                spriteAsset = Resources.Load("Sprites/Default Sprite Atlas") as SpriteAsset;
+                TMP_Settings settings = Resources.Load("TMP_Settings") as TMP_Settings;
+                if (settings.spriteAsset != null)
+                    spriteAsset = settings.spriteAsset;
+                else
+                    spriteAsset = Resources.Load("Sprites/Default Sprite Atlas") as SpriteAsset;
 
             }
 
@@ -183,8 +182,10 @@ namespace TMPro
             m_inlineGraphicCanvasRenderer = inlineGraphicObj.GetComponent<CanvasRenderer>();
 
             m_inlineGraphicRectTransform.SetParent(transform, false);
+
             m_inlineGraphicRectTransform.localPosition = Vector3.zero;
             m_inlineGraphicRectTransform.anchoredPosition3D = Vector3.zero;
+
             m_inlineGraphicRectTransform.sizeDelta = Vector2.zero;
             m_inlineGraphicRectTransform.anchorMin = Vector2.zero;
             m_inlineGraphicRectTransform.anchorMax = Vector2.one;
@@ -212,12 +213,12 @@ namespace TMPro
             {               
                 m_uiVertex = new UIVertex[Mathf.NextPowerOfTwo(sizeX4)];
                 //Debug.Log("Increasing Sprite Mesh Allocations to " + m_uiVertex.Length);
-            }                                 
+            }
         }
 
 
         public void UpdatePivot(Vector2 pivot)
-        {            
+        {
             if (m_inlineGraphicRectTransform == null) m_inlineGraphicRectTransform = m_inlineGraphic.GetComponent<RectTransform>();
             
             m_inlineGraphicRectTransform.pivot = pivot;
@@ -262,6 +263,19 @@ namespace TMPro
  
             return m_spriteAsset.spriteInfoList[index];
            
+        }
+
+
+        public int GetSpriteIndex(int hashCode)
+        {
+            if (m_spriteAsset == null || m_spriteAsset.spriteInfoList == null)
+            {
+                Debug.LogWarning("No Sprite Asset is assigned.");
+                return -1;
+            }
+
+            int index = m_spriteAsset.spriteInfoList.FindIndex(item => item.hashCode == hashCode);
+            return index;
         }
 
 

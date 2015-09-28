@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_text: '*This is a partial list of all the Rich Text Tags available.'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 0}
   m_fontStyle: 0
   m_isOverlay: 0
   m_fontColor32:
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_enableKerning: 0
   m_overrideHtmlColors: 0
   m_enableExtraPadding: 1
-  checkPaddingRequired: 0
+  checkPaddingRequired: 1
   m_enableWordWrapping: 1
   m_overflowMode: 0
   m_wordWrappingRatios: .400000006
@@ -161,33 +161,18 @@ MonoBehaviour:
   m_verticalMapping: 2
   m_uvOffset: {x: 0, y: 0}
   m_uvLineOffset: .300000012
-  isInputParsingRequired: 0
+  isInputParsingRequired: 1
   havePropertiesChanged: 1
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isRightToLeft: 0
   m_inputSource: 0
   m_renderer: {fileID: 133236933}
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_maskType: 0
   m_enableAutoSizing: 0
 --- !u!114 &133236931
@@ -302,7 +287,7 @@ MonoBehaviour:
     Size <size=%75>Smaller</size><pos=30><<#ffff00>size=%75</color>> <<#ffff00>/size</color>>
 
     Size <size=%125>Larger</size><pos=30><<#ffff00>size=%125</color>> <<#ffff00>/size</color>>'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 0}
   m_fontStyle: 0
   m_isOverlay: 0
   m_fontColor32:
@@ -337,7 +322,7 @@ MonoBehaviour:
   m_enableKerning: 0
   m_overrideHtmlColors: 0
   m_enableExtraPadding: 1
-  checkPaddingRequired: 0
+  checkPaddingRequired: 1
   m_enableWordWrapping: 1
   m_overflowMode: 0
   m_wordWrappingRatios: .400000006
@@ -345,33 +330,18 @@ MonoBehaviour:
   m_verticalMapping: 2
   m_uvOffset: {x: 0, y: 0}
   m_uvLineOffset: .300000012
-  isInputParsingRequired: 0
+  isInputParsingRequired: 1
   havePropertiesChanged: 1
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isRightToLeft: 0
   m_inputSource: 0
   m_renderer: {fileID: 347737871}
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 1
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_maskType: 0
   m_enableAutoSizing: 0
 --- !u!33 &347737870
@@ -467,9 +437,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_text: '<size=125%><u><#a0ffa0>Rich Text Tags</color>* available in TextMesh<#0080ff>Pro!</color></u></size>
+  m_text: '<size=120%><u><#a0ffa0>Basic Rich Text Tags</color>* available in TextMesh<#0080ff>Pro</color></u></size><line-height=1.5em>
 
-    Normal
+    </line-height>Normal
 
     <b>Bold</b><pos=50%><<#ffff00>b</color>> <<#ffff00>/b</color>>
 
@@ -479,14 +449,15 @@ MonoBehaviour:
 
     <s>Strikethrough</s><pos=50%><<#ffff00>s</color>> <<#ffff00>/s</color>>
 
-    Super<sup> script</sup><pos=50%><<#ffff00>sup</color>> <<#ffff00>/sup</color>>
+    Superscript  - X<sup>3</sup> -<pos=50%><<#ffff00>sup</color>> <<#ffff00>/sup</color>>
 
-    Sub<sub> script</sub><pos=50%><<#ffff00>sub</color>> <<#ffff00>/sub</color>>
+    Subscript  - H<sub>2</sub>O -<pos=50%><<#ffff00>sub</color>> <<#ffff00>/sub</color>>
 
-    Size <size=75%>Smaller</size><pos=50%><<#ffff00>size=75%</color>> <<#ffff00>/size</color>>
+    Size <size=75%>Smaller</size><size=125%> Bigger</size><pos=50%><<#ffff00>size=75%</color>>
+    <<#ffff00>/size</color>>
 
-    Size <size=125%>Larger</size><pos=50%><<#ffff00>size=125%</color>> <<#ffff00>/size</color>>'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+'
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -531,28 +502,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -579,7 +534,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: -50, y: -50}
+  m_SizeDelta: {x: -40, y: -50}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &718714744
 GameObject:
@@ -611,8 +566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_text: '*This is a partial list of the Rich Text Tags available.'
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_text: '*Partial list of the Rich Text Tags available in TextMeshPro.'
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -657,28 +612,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -775,6 +714,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10

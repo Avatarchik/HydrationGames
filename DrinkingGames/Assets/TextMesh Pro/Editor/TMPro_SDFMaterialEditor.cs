@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+﻿// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
@@ -14,8 +14,10 @@ using TMPro.EditorUtilities;
 
 public class TMPro_SDFMaterialEditor : MaterialEditor
 {
+
     private struct m_foldout
     { // Track Inspector foldout panel states, globally.
+
         public static bool editorPanel = true;
 
         public static bool face = true;
@@ -31,9 +33,18 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
     private enum FoldoutType { face, outline, underlay, bevel, light, bump, env, glow, debug };
 
+    private enum WarningTypes { None, ShaderMismatch, FontAtlasMismatch };
+    private string m_warningMsg;
+    private WarningTypes m_warning = WarningTypes.None;
+    private double m_warningTimeStamp;
+
     //private static PropertyModification m_modifiedProperties;
     private static int m_eventID;
-	//private Material m_targetMaterial;
+    //private Material m_targetMaterial;
+
+    private enum ShaderTypes { None, Bitmap, SDF };
+    //private ShaderTypes m_shaderType = ShaderTypes.None;
+    private TextMeshProFont m_fontAsset;
 
 
     // Face Properties
@@ -134,7 +145,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
 
 
-    // Private Fields  
+    // Private Fields
     private enum Bevel_Types { OuterBevel = 0, InnerBevel = 1 };
     private enum Mask_Type { MaskOff = 0, MaskHard = 1, MaskSoft = 2 };
 
@@ -158,8 +169,6 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
     private bool havePropertiesChanged = false;
 
 
-    //private TextMeshPro m_textMeshPro;
-    //private TextMeshProUGUI m_textMeshProUGUI;
     private Rect m_inspectorStartRegion;
     private Rect m_inspectorEndRegion;
 
@@ -176,26 +185,57 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
         // Initialize the Event Listener for Undo Events.
         Undo.undoRedoPerformed += OnUndoRedo;
         //Undo.postprocessModifications += OnUndoRedoEvent;
+
+        // Check for Font Asset and Shader assignment mismatch
+        //if (Selection.activeGameObject != null)
+        //{
+        //    GameObject activeGameObject = Selection.activeGameObject;
+        //    if (activeGameObject.GetComponent<TextMeshPro>() != null)
+        //        m_fontAsset = activeGameObject.GetComponent<TextMeshPro>().font;
+        //    else
+        //        m_fontAsset = activeGameObject.GetComponent<TextMeshProUGUI>().font;
+        //}
     }
 
 
     public override void OnDisable()
     {
         //Debug.Log("OnDisable() called.");
-        
-        // Remove Undo / Redo Event Listeners.
+
         base.OnDisable();
-      
+
+        // Remove Undo / Redo Event Listeners.
         Undo.undoRedoPerformed -= OnUndoRedo;
         //Undo.postprocessModifications -= OnUndoRedoEvent;
     }
 
 
+    protected override void OnHeaderGUI()
+    {
+        EditorGUI.BeginChangeCheck();
+        base.OnHeaderGUI();
+        if (EditorGUI.EndChangeCheck())
+            m_foldout.editorPanel = UnityEditorInternal.InternalEditorUtility.GetIsInspectorExpanded(target);
+
+        GUI.skin.GetStyle("HelpBox").richText = true;
+
+        // Show warning messages related to Font Atlas or Shader and Font Asset type mismatch.
+        switch (m_warning)
+        {
+            case WarningTypes.FontAtlasMismatch:
+                EditorGUILayout.HelpBox(m_warningMsg, MessageType.Warning);
+                break;
+            //case WarningTypes.ShaderMismatch:
+            //    EditorGUILayout.HelpBox(m_warningMsg, MessageType.Warning);
+            //    break;
+        }
+    }
+
+
     public override void OnInspectorGUI()
     {
-        // if we are not visible... return
-        if (!isVisible)
-            return;
+        // Control visibility of material inspector
+        if (!m_foldout.editorPanel) return;
 
         ReadMaterialProperties();
 
@@ -213,6 +253,16 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                     return;
                 }
             }
+        }
+
+
+        if (!targetMaterial.HasProperty(ShaderUtilities.ID_GradientScale))
+        {
+            m_warning = WarningTypes.ShaderMismatch;
+        //  m_warningTimeStamp = EditorApplication.timeSinceStartup + 15;
+            m_warningMsg = "The selected Shader is not compatible with the currently selected Font Asset type.";
+            EditorGUILayout.HelpBox(m_warningMsg, MessageType.Warning);
+            return;
         }
 
 
@@ -251,12 +301,8 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
         // Define the Drag-n-Drop Region (Start)
         m_inspectorStartRegion = GUILayoutUtility.GetRect(0f, 0f, GUILayout.ExpandWidth(true));
 
-        // Check if Shader selection is compatible with Font Asset
-        // TODO
-
 
         EditorGUIUtility.LookLikeControls(130, 50);
-        
 
         // FACE PANEL
         EditorGUI.indentLevel = 0;
@@ -463,7 +509,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
         }
 
 
-        // DEBUG PANEL        
+        // DEBUG PANEL
         if (targetMaterial.HasProperty("_GradientScale"))
         {
             EditorGUI.indentLevel = 0;
@@ -475,7 +521,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                 EditorGUI.indentLevel = 1;
 
                 EditorGUI.BeginChangeCheck();
-       
+
                 DrawTextureProperty(m_mainTex, "Font Atlas");
                 DrawFloatProperty(m_gradientScale, "Gradient Scale");
                 DrawFloatProperty(m_texSampleWidth, "Texture Width");
@@ -568,7 +614,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
 
             PropertiesChanged();
             EditorUtility.SetDirty(target);
-            //TMPro_EditorUtility.RepaintAll(); // Look into using SetDirty.          
+            //TMPro_EditorUtility.RepaintAll(); // Look into using SetDirty.
             TMPro_EventManager.ON_MATERIAL_PROPERTY_CHANGED(true, target as Material);
             
         }
@@ -599,13 +645,17 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
                     Material currentMaterial = target as Material;
 
                     Material newMaterial = DragAndDrop.objectReferences[0] as Material;
-                    //Debug.Log("Drag-n-Drop Material is " + newMaterial + ". Target Material is " + currentMaterial); // + ".  Canvas Material is " + m_uiRenderer.GetMaterial()  );
-               
+
                     // Check to make sure we have a valid material and that the font atlases match.
                     if (!newMaterial || newMaterial == currentMaterial || newMaterial.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID() != currentMaterial.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID())
                     {
                         if (newMaterial && newMaterial.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID() != currentMaterial.GetTexture(ShaderUtilities.ID_MainTex).GetInstanceID())
-                            Debug.LogWarning("Drag-n-Drop Material [" + newMaterial.name + "]'s Atlas does not match the Atlas of the currently assigned Font Asset's Atlas.");
+                        {
+                            m_warning = WarningTypes.FontAtlasMismatch;
+                            EditorApplication.update += EditorUpdate;
+                            m_warningTimeStamp = EditorApplication.timeSinceStartup + 15;
+                            m_warningMsg = "\nThe Font Atlas of the new material <color=yellow>" + newMaterial.name + "</color> does not match the Font Atlas of the currently assigned Font Asset. Select a material which was duplicated from this current Font Asset.\n";
+                        }
                         break;
                     }
 
@@ -640,12 +690,22 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
     }
 
 
+    // Callback used to display & fade warnings in the material inspector.
+    void EditorUpdate()
+    {
+        if (EditorApplication.timeSinceStartup > m_warningTimeStamp)
+        {
+            EditorApplication.update -= EditorUpdate;
+            m_warning = WarningTypes.None;
+            this.Repaint();
+        }
+    }
 
 
     // Special Handling of Undo / Redo Events.
     private void OnUndoRedo()
     {
-        //Debug.Log("Undo / Redo Event ID (" + Undo.GetCurrentGroup() + ") occured.");
+        //Debug.Log("Undo / Redo Event ID (" + Undo.GetCurrentGroup() + ") occurred.");
 
         int UndoEventID = Undo.GetCurrentGroup();
         int LastUndoEventID = m_eventID;
@@ -752,7 +812,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
         
         GUI.Label(pos0, label);
         
-        EditorGUIUtility.labelWidth = 35;       
+        EditorGUIUtility.labelWidth = 35;
         FloatProperty(pos1, properties[0], "X");
 
         EditorGUIUtility.labelWidth = 35;
@@ -763,7 +823,7 @@ public class TMPro_SDFMaterialEditor : MaterialEditor
     }
 
 
-    // Function to Draw Material Property and make it look like a Slider with numericalf field.
+    // Function to Draw Material Property and make it look like a Slider with numerical field.
     private void DrawSliderProperty(MaterialProperty property, string label)
     {
         float old_LabelWidth = EditorGUIUtility.labelWidth;

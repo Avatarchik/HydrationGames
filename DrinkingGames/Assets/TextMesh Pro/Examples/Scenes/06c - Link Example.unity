@@ -276,6 +276,8 @@ MonoBehaviour:
   ShowWords: 0
   ShowLinks: 1
   ShowLines: 0
+  ShowBounds: 0
+  ObjectStats: 'Characters: 106   Words: 18   Links: 2   Lines: 4   Spaces: 15'
 --- !u!114 &934502350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ MonoBehaviour:
   m_text: The <<#ffff00>link="name"</color>><link="id_01><u><i><#80ff80>Insert link
     text here</u></i></color> </link><<#ffff00>/link</color>> tag allows adding <link="id_02"><u><i><#80ff80>links</color></i></u></link>
     within a text object in TextMesh<#40a0ff>Pro
-  m_fontAsset: {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
   m_fontMaterial: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_fontStyle: 0
@@ -337,28 +339,12 @@ MonoBehaviour:
   havePropertiesChanged: 0
   hasFontAssetChanged: 0
   m_isRichText: 1
+  m_parseCtrlCharacters: 1
   m_inputSource: 0
   m_ignoreCulling: 1
   m_isOrthographic: 0
   m_isCullingEnabled: 0
   m_pageToDisplay: 0
-  m_fontAssetArray:
-  - {fileID: 11400000, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_baseMaterial: {fileID: 2100000, guid: 6a9165d4abc743c469f4e1f2ee39605c, type: 2}
   m_isNewBaseMaterial: 0
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
@@ -455,6 +441,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10

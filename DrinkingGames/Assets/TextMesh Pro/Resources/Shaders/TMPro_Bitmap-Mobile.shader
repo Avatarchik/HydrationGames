@@ -48,8 +48,6 @@ SubShader {
 			o.vertex = UnityPixelSnap(mul(UNITY_MATRIX_MVP, v.vertex));
 			//o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 			o.color = v.color;
-			if(o.color.a > .5) o.color.a -= .5;
-			o.color.a *= 2.0;
 			o.color *= _Color;
 			o.color.rgb *= _DiffusePower;
 			o.texcoord0 = v.texcoord0;

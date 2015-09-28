@@ -1,7 +1,7 @@
-// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Beta Release 0.1.5 Beta 1.7
+// Beta Release 0.1.5 Beta 2.2
 
 
 #if UNITY_4_6 || UNITY_5
@@ -103,7 +103,7 @@ namespace TMPro
 
         /// <summary>
         /// This is the default vertex color assigned to each vertices. Color tags will override vertex colors unless the overrideColorTags is set.
-        /// </summary>       
+        /// </summary>
         public new Color color
         {
             get { return m_fontColor; }
@@ -218,6 +218,16 @@ namespace TMPro
         {
             get { return m_isRichText; }
             set { m_isRichText = value; havePropertiesChanged = true; m_isCalculateSizeRequired = true; MarkLayoutForRebuild(); isInputParsingRequired = true; }
+        }
+
+
+        /// <summary>
+        /// Enables or Disables parsing of CTRL characters in input text.
+        /// </summary>
+        public bool parseCtrlCharacters
+        {
+            get { return m_parseCtrlCharacters; }
+            set { m_parseCtrlCharacters = value; havePropertiesChanged = true; m_isCalculateSizeRequired = true; MarkLayoutForRebuild(); isInputParsingRequired = true; }
         }
 
 
@@ -708,23 +718,22 @@ namespace TMPro
         //    Debug.Log("Rebuild()");
         //    LayoutRebuilder.MarkLayoutForRebuild(m_rectTransform);
         //}
-        
-        
-        
+
+
+
         //public bool IsDestroyed()
         //{
         //    return true;
         //}
 
 
-        public override bool Raycast(Vector2 sp, Camera eventCamera)
-        {
-            //Debug.Log("Raycast Event. ScreenPoint: " + sp );
-            return true;
-            //return base.Raycast(sp, eventCamera);
-        }
+        //public override bool Raycast(Vector2 sp, Camera eventCamera)
+        //{
+        //    //Debug.Log("Raycast Event. ScreenPoint: " + sp);
+        //    return base.Raycast(sp, eventCamera);
+        //}
 
-        
+
         // MASKING RELATED PROPERTIES
         /// <summary>
         /// Sets the masking offset from the bounds of the object
@@ -791,12 +800,12 @@ namespace TMPro
                     m_maskingMaterial = MaterialManager.GetStencilMaterial(m_baseMaterial, m_stencilID);
                     m_sharedMaterial = m_maskingMaterial;
                 }
-                                               
-                  
+
+
                 if (m_isMaskingEnabled)
                     EnableMasking();
 
-                //Debug.Log("Masking Enabled. Assigning " + m_maskingMaterial.name + " with ID " + m_maskingMaterial.GetInstanceID());                           
+                //Debug.Log("Masking Enabled. Assigning " + m_maskingMaterial.name + " with ID " + m_maskingMaterial.GetInstanceID());
             }
 
             m_uiRenderer.SetMaterial(m_sharedMaterial, null);
@@ -820,11 +829,18 @@ namespace TMPro
             //base.UpdateGeometry();
         }
 
-        protected override void OnFillVBO(List<UIVertex> vbo)
+
+        public void RecalculateMasking()
         {
-            //Debug.Log("OnFillVBO");
-            base.OnFillVBO(vbo);
+
+
         }
+
+        //protected override void OnFillVBO(List<UIVertex> vbo)
+        //{
+        //    //Debug.Log("OnFillVBO");
+        //    base.OnFillVBO(vbo);
+        //}
 
         /*
         /// <summary>
@@ -924,7 +940,7 @@ namespace TMPro
         {
             //Debug.Log("ForceMeshUpdate() called.");
             //havePropertiesChanged = true;
-            OnPreRenderCanvas();            
+            OnPreRenderCanvas();
         }
 
 

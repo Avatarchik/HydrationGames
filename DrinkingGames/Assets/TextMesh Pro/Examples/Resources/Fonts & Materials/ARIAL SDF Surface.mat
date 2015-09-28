@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 5
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -11,6 +11,7 @@ Material:
   m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
+  stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
@@ -18,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2835806, guid: 1644604adebebed459b59bc06bc892d4, type: 2}
+          m_Texture: {fileID: 2835806, guid: 316f956b856b45c448987b5018ec3ef4, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -54,6 +55,10 @@ Material:
         first:
           name: _FaceDilate
         second: .200000003
+      data:
+        first:
+          name: _FaceShininess
+        second: 1
       data:
         first:
           name: _UnderlayOffsetX
@@ -112,6 +117,26 @@ Material:
         second: 1024
       data:
         first:
+          name: _Bevel
+        second: 0
+      data:
+        first:
+          name: _LightAngle
+        second: 3.14159989
+      data:
+        first:
+          name: _GlowOffset
+        second: .488000005
+      data:
+        first:
+          name: _GlowPower
+        second: .75
+      data:
+        first:
+          name: _GlowOuter
+        second: .150000006
+      data:
+        first:
           name: _MaskSoftnessX
         second: 0
       data:
@@ -142,34 +167,6 @@ Material:
         first:
           name: _ScaleRatioC
         second: .666666687
-      data:
-        first:
-          name: _FaceShininess
-        second: 1
-      data:
-        first:
-          name: _Bevel
-        second: 0
-      data:
-        first:
-          name: _LightAngle
-        second: 3.14159989
-      data:
-        first:
-          name: _GlowOffset
-        second: .488000005
-      data:
-        first:
-          name: _GlowPower
-        second: .75
-      data:
-        first:
-          name: _GlowOuter
-        second: .150000006
-      data:
-        first:
-          name: _OutlineShininess
-        second: 1
       data:
         first:
           name: _FaceUVSpeedX
@@ -232,6 +229,10 @@ Material:
         second: .5
       data:
         first:
+          name: _OutlineShininess
+        second: 1
+      data:
+        first:
           name: _EnvTiltX
         second: 0
       data:
@@ -261,16 +262,16 @@ Material:
         second: {r: 0, g: 0, b: 0, a: 1}
       data:
         first:
-          name: _MaskCoord
-        second: {r: 0, g: 0, b: 0, a: 0}
-      data:
-        first:
           name: _EnvMatrixRotation
         second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _GlowColor
         second: {r: 0, g: 1, b: 0, a: .501960814}
+      data:
+        first:
+          name: _MaskCoord
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _SpecularColor

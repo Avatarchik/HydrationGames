@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+﻿// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
@@ -39,7 +39,7 @@ namespace TMPro
 
             Material stencilMaterial = null;
 
-            // Check if baseMaterial already has a masking material associated with it.                  
+            // Check if baseMaterial already has a masking material associated with it.
             int index = m_materialList.FindIndex(item => item.baseMaterial == baseMaterial && item.stencilID == stencilID);
 
             if (index == -1)
@@ -63,7 +63,7 @@ namespace TMPro
 
                 m_materialList.Add(temp);
 
-                //Debug.Log("Masking material for " + baseMaterial.name + " DOES NOT exists. Creating new " + maskingMaterial.name + " with ID " + maskingMaterial.GetInstanceID() + " which is used " + temp.count + " time(s).");           
+                //Debug.Log("Masking material for " + baseMaterial.name + " DOES NOT exists. Creating new " + maskingMaterial.name + " with ID " + maskingMaterial.GetInstanceID() + " which is used " + temp.count + " time(s).");
 
             }
             else
@@ -71,13 +71,13 @@ namespace TMPro
                 stencilMaterial = m_materialList[index].stencilMaterial;
                 m_materialList[index].count += 1;
 
-                //Debug.Log("Masking material for " + baseMaterial.name + " already exists. Passing reference to " + maskingMaterial.name + " with ID " + maskingMaterial.GetInstanceID() + " which is used " + m_materialList[index].count + " time(s).");           
+                //Debug.Log("Masking material for " + baseMaterial.name + " already exists. Passing reference to " + maskingMaterial.name + " with ID " + maskingMaterial.GetInstanceID() + " which is used " + m_materialList[index].count + " time(s).");
             }
 
             // Used for Debug
             ListMaterials();
             
-            return stencilMaterial;         
+            return stencilMaterial;
         }
 
 
@@ -262,7 +262,7 @@ namespace TMPro
             m_maskComponents = obj.GetComponentsInParent<Mask>();
             for (int i = 0; i < m_maskComponents.Length; i++ )
             {
-                if (m_maskComponents[i].MaskEnabled())
+                if (m_maskComponents[i].enabled)
                     count += 1;
             }
 

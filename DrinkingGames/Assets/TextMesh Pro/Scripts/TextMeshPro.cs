@@ -1,7 +1,7 @@
-// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
-// Beta Release 0.1.5 Beta 1.7
+// Beta Release 0.1.5 Beta 2.2
 
 
 using UnityEngine;
@@ -26,17 +26,12 @@ namespace TMPro
     public enum MaskingOffsetMode {  Percentage = 0, Pixel = 1 };  
     public enum TextureMappingOptions { Character = 0, Line = 1, Paragraph = 2, MatchAspect = 3 };
 
-    public enum FontStyles { Normal = 0, Bold = 1, Italic = 2, Underline = 4, LowerCase = 8, UpperCase = 16, SmallCaps = 32, Strikethrough = 64,
-                            BoldItalic = Bold + Italic, BoldUnderline = Bold + Underline, BoldItalicUnderline = BoldUnderline + Italic, BoldStrikethrough = Bold + Strikethrough, BoldItalicStrikethrough = BoldItalic + Strikethrough, BoldUnderlineStrikethrough = BoldUnderline + Strikethrough, BoldItalicUnderlineStrikethrough = BoldItalicUnderline + Strikethrough,
-                            ItalicUnderline = Italic + Underline, ItalicStrikethrough = Italic + Strikethrough, ItalicUnderlineStrikethrough = ItalicUnderline + Strikethrough, 
-                            LowerCaseBold = LowerCase + Bold, LowerCaseItalic = LowerCase + Italic, LowerCaseUnderline = LowerCase + Underline, LowerCaseStrikethrough = LowerCase + Strikethrough, LowerCaseBoldItalic = LowerCase + BoldItalic, LowerCaseBoldUnderline = LowerCase + BoldUnderline, LowerCaseBoldStrikethrough = LowerCase + BoldStrikethrough, LowerCaseItalicStrikethrough = LowerCase + ItalicStrikethrough, LowerCaseBoldItalicStrikethrough = LowerCase + BoldItalicStrikethrough, LowerCaseBoldUnderlineStrikethrough = LowerCase + BoldUnderlineStrikethrough, LowerCaseBoldItalicUnderline = LowerCase + BoldItalicUnderline, LowerCaseBoldItalicUnderlineStrikethrough = LowerCase + BoldItalicUnderlineStrikethrough,
-                            UpperCaseBold = UpperCase + Bold, UpperCaseItalic = UpperCase + Italic, UpperCaseUnderline = UpperCase + Underline, UpperCaseStrikethrough = UpperCase + Strikethrough, UpperCaseBoldItalic = UpperCase + BoldItalic, UpperCaseBoldUnderline = UpperCase + BoldUnderline, UpperCaseBoldStrikethrough = UpperCase + BoldStrikethrough, UpperCaseItalicStrikethrough = UpperCase + ItalicStrikethrough, UpperCaseBoldItalicStrikethrough = UpperCase + BoldItalicStrikethrough, UpperCaseBoldUnderlineStrikethrough = UpperCase + BoldUnderlineStrikethrough, UpperCaseBoltItalicUnderline = UpperCase + BoldItalicUnderline, UpperCaseBoldItalicUnderlineStrikethrough = UpperCase + BoldItalicUnderlineStrikethrough,
-                            SmallCapsBold = SmallCaps + Bold, SmallCapsItalic = SmallCaps + Italic, SmallCapsUnderline = SmallCaps + Underline, SmallCapsStrikethrough = SmallCaps + Strikethrough, SmallCapsBoldItalic = SmallCaps + BoldItalic, SmallCapsBoldUnderline = SmallCaps + BoldUnderline, SmallCapsBoldStrikethrough = SmallCaps + BoldStrikethrough, SmallCapsItalicStrikethrough = SmallCaps + ItalicStrikethrough, SmallCapsBoldItalicStrikethrough = SmallCaps + BoldItalicStrikethrough, SmallCapsBoldUnderlineStrikethrough = SmallCaps + BoldUnderlineStrikethrough, SmallCapsBoldItalicUnderline = SmallCaps + BoldItalicUnderline, SmallCapsBoldItalicUnderlineStrikethrough = SmallCaps + BoldItalicUnderlineStrikethrough,
-                            };
+
+    public enum FontStyles { Normal = 0x0, Bold = 0x1, Italic = 0x2, Underline = 0x4, LowerCase = 0x8, UpperCase = 0x10, SmallCaps = 0x20, Strikethrough = 0x40, Superscript = 0x80, Subscript = 0x100 };
 
     public enum TagUnits { Pixels = 0, FontUnits = 1, Percentage = 2};
 
-   
+
     [ExecuteInEditMode]
     [RequireComponent(typeof(TextContainer))]
     [RequireComponent(typeof(MeshRenderer))]
@@ -45,7 +40,7 @@ namespace TMPro
     public partial class TextMeshPro : MonoBehaviour
     {
         // Public Properties and Serializable Properties  
-        
+
         /// <summary>
         /// A string containing the text to be displayed.
         /// </summary>
@@ -70,10 +65,10 @@ namespace TMPro
         /// The material to be assigned to this text object. An instance of the material will be assigned to the object's renderer.
         /// </summary>
         public Material fontMaterial
-        {           
+        {
             // Return a new Instance of the Material if none exists. Otherwise return the current Material Instance.
             get 
-            {           
+            {
                 if (m_fontMaterial == null)
                 {
                     SetFontMaterial(m_sharedMaterial);
@@ -109,7 +104,7 @@ namespace TMPro
 
         /// <summary>
         /// This is the default vertex color assigned to each vertices. Color tags will override vertex colors unless the overrideColorTags is set.
-        /// </summary>      
+        /// </summary>
         public Color color
         {
             get { return m_fontColor; }
@@ -215,7 +210,17 @@ namespace TMPro
             set { m_isRichText = value; havePropertiesChanged = true; isInputParsingRequired = true; }
         }
 
-      
+
+        /// <summary>
+        /// Enables or Disables parsing of CTRL characters in input text.
+        /// </summary>
+        public bool parseCtrlCharacters
+        {
+            get { return m_parseCtrlCharacters; }
+            set { m_parseCtrlCharacters = value; havePropertiesChanged = true; isInputParsingRequired = true; }
+        }
+
+
         /// <summary>
         /// Determines where word wrap will occur.
         /// </summary>
@@ -546,7 +551,7 @@ namespace TMPro
             set { m_fontSizeMax = value; }
         }
 
-        
+
         // MASKING RELATED PROPERTIES
         /// <summary>
         /// Sets the mask type 
@@ -631,6 +636,13 @@ namespace TMPro
         //{
         //    get { return m_meshInfo; }
         //}
+
+
+        #pragma warning disable 0108
+        public Renderer renderer
+        {
+            get { return m_renderer; }
+        }
 
 
         public Mesh mesh

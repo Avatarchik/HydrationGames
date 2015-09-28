@@ -1,5 +1,5 @@
-// Copyright (C) 2014 Stephan Schaem - All Rights Reserved
-// This code can only be used under the standard Unity Asset Store End User License Agreementoutline
+// Copyright (C) 2014 Stephan Schaem & Stephan Bouchard - All Rights Reserved
+// This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
 Shader "TMPro/Distance Field" {
@@ -137,16 +137,17 @@ SubShader {
 
 		struct pixel_t {
 			float4	vertex			: SV_POSITION;
-			fixed4	color			: COLOR;
-			fixed4	faceColor		: COLOR1;
-			fixed4	outlineColor	: COLOR2;
-			float4	texcoords		: TEXCOORD0;		// Atlas & Texture
-			float4	param			: TEXCOORD1;		// alphaClip, scale, bias, weight
-			float4	mask			: TEXCOORD2;		// Position in object space(xy), pixel Size(zw)
-			float3	viewDir			: TEXCOORD3;
+			//fixed4	color			: COLOR;
+			fixed4	faceColor		: COLOR;
+			fixed4	outlineColor	: COLOR1;
+			fixed   vertexAlpha		: TEXCOORD0;
+			float4	texcoords		: TEXCOORD1;		// Atlas & Texture
+			float4	param			: TEXCOORD2;		// alphaClip, scale, bias, weight
+			float4	mask			: TEXCOORD3;		// Position in object space(xy), pixel Size(zw)
+			float3	viewDir			: TEXCOORD4;
 		#if (UNDERLAY_ON || UNDERLAY_INNER)
-			float4	texcoord2		: TEXCOORD4;		// u,v, scale, bias
-			fixed4	underlayColor	: TEXCOORD5;
+			float4	texcoord2		: TEXCOORD5;		// u,v, scale, bias
+			fixed4	underlayColor	: TEXCOORD6;
 		#endif
 		};
 
@@ -201,7 +202,7 @@ SubShader {
 
 			pixel_t output = {
 				vPosition,
-				input.color, faceColor, outlineColor,
+				faceColor, outlineColor, input.color.a,
 				float4(input.texcoord0, UnpackUV(input.texcoord1.x)),
 				float4(alphaClip, scale, bias, weight),
 				float4(vert.xy-_MaskCoord.xy, .5/pixelSize.xy),
@@ -271,7 +272,7 @@ SubShader {
 
 		#if GLOW_ON
 			float4 glowColor = GetGlowColor(sd, scale);
-			faceColor.rgb += glowColor.rgb * glowColor.a * input.color.a;
+			faceColor.rgb += glowColor.rgb * glowColor.a * input.vertexAlpha;
 			//faceColor.a *= glowColor.a; // Required for Alpha when using Render Textures
 		#endif
 

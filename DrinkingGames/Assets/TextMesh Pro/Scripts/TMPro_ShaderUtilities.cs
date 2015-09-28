@@ -1,4 +1,4 @@
-﻿// Copyright (C) 2014 Stephan Bouchard - All Rights Reserved
+﻿// Copyright (C) 2014 - 2015 Stephan Bouchard - All Rights Reserved
 // This code can only be used under the standard Unity Asset Store End User License Agreement
 // A Copy of the EULA APPENDIX 1 is available at http://unity3d.com/company/legal/as_terms
 
@@ -214,6 +214,10 @@ namespace TMPro
         // Function to calculate padding required for Outline Width & Dilation for proper text alignment
         public static Vector4 GetFontExtent(Material material)
         {
+            // Revised implementation where style no longer affects alignment
+            return Vector4.zero;
+
+            /*
             if (material == null || !material.HasProperty(ShaderUtilities.ID_GradientScale))
                 return Vector4.zero;   // We are using an non SDF Shader.
             
@@ -225,6 +229,7 @@ namespace TMPro
             extent *= material.GetFloat(ID_GradientScale);
 
             return new Vector4(extent, extent, extent, extent);
+            */
         }
 
 

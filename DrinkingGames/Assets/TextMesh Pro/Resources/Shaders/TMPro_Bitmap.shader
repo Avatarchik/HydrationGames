@@ -72,8 +72,6 @@ SubShader {
 			float4 vPosition = UnityPixelSnap(mul(UNITY_MATRIX_MVP, vert));
 
 			fixed4 faceColor = i.color;
-			if(faceColor.a > .5) faceColor.a -= .5;
-			faceColor.a *= 2;
 			faceColor *= _FaceColor;
 
 			v2f o;
