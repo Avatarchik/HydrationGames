@@ -45,7 +45,7 @@ public class Goal : TurtleScript {
 	public void setToOpen() {
 		_isOpen = true;
 		_rotateSpeed = _fastRotateSpeed;
-		LeanTween.cancel (gameObject);
+		LeanTween.cancel (gameObject); 
 		LeanTween.scale (gameObject, _bigScale, 1f).setEase (LeanTweenType.easeOutSine);
 	}
 

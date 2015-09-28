@@ -10,6 +10,7 @@ public class TurtleBabyTracker : TurtleScript {
 	public int numBabiesOnBoard = 0;
 	public List<GameObject> babiesOnBoard;
 	public TurtleControls turtleControls;
+	private TurtleRotateAndAnimate _turtleRotateAndAnimate;
 
 	private SpriteRenderer _spriteRenderer;
 	[SerializeField]
@@ -21,11 +22,12 @@ public class TurtleBabyTracker : TurtleScript {
 
 	// Use this for initialization
 	void Start () {
+		_turtleRotateAndAnimate = GetComponent<TurtleRotateAndAnimate> ();
 		turtleControls = GetComponent<TurtleControls> ();
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 
 		originalColor = _spriteRenderer.color;
-		hurtColor = new Color (originalColor.r, .9f, originalColor.b, .4f);
+		hurtColor = new Color (originalColor.r, originalColor.g, originalColor.b, .4f);
 	}
 	
 	// Update is called once per frame
@@ -71,6 +73,15 @@ public class TurtleBabyTracker : TurtleScript {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 			turtleBaby.followTurtle = false;
 			turtleBaby.lightOn(true);
+
+
+//			float angle = Random.Range (0,360);
+//			float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.x;
+//			float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.y;
+//			float testX = x-turtleBaby.gameObject.transform.position.x;
+//			float testY = y-turtleBaby.gameObject.transform.position.y;
+//			print (testX + " " +  testY);
+//			turtleBaby._rb2D.AddForce(new Vector2 ((x-turtleBaby.gameObject.transform.position.x) * 20f, (y-turtleBaby.gameObject.transform.position.y) * 20f), ForceMode2D.Impulse);
 			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 			checkBabiesAndSetGoal();
 		}
@@ -78,10 +89,8 @@ public class TurtleBabyTracker : TurtleScript {
 
 	void checkBabiesAndSetGoal() {
 		if (allBabiesOnBoard()) {
-			print ("setting to open");
 			goal.setToOpen();
 		} else {
-			print ("setting to closed");
 			goal.setToClosed();
 		}
 	}
