@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TurtleRotateAndAnimate : MonoBehaviour {
-	public bool isSkidding = true;
+
 	private Rigidbody2D _rb2D;
 	private Animator _animator;
 	
@@ -16,9 +16,7 @@ public class TurtleRotateAndAnimate : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		animateOnMove();
-		if (!isSkidding) {
-			faceDirectionOfMovement();
-		}
+		faceDirectionOfMovement();
 	}
 	
 	void animateOnMove() {

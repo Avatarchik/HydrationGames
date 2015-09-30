@@ -41,16 +41,20 @@ public class TurtleBabyTracker : TurtleScript {
 		if (coll.gameObject.tag == "Baby" && coll.gameObject.GetComponent<TurtleBaby>().team == team) {
 			TurtleBaby turtleBaby = coll.gameObject.GetComponent<TurtleBaby>();
 
-			if (!turtleBaby.followTurtle) {
+			if (turtleBaby.currentState != turtleBaby.followState) {
+				print ("current state is: " + turtleBaby.currentState);
+			//if (!turtleBaby.followTurtle) {
 				babiesOnBoard.Add(coll.gameObject);
 				if (babiesOnBoard.Count == 1) {
 					turtleBaby.positionToFollow = turtleControls.followPosition;
 				} else {
 					turtleBaby.positionToFollow = babiesOnBoard[babiesOnBoard.Count - 2].GetComponent<TurtleBaby>().followPosition;
 				}
+				turtleBaby.currentState.ToFollowState(turtleBaby.positionToFollow);
+
 				turtleBaby.wander = false;
 				turtleBaby.followTurtle = true;
-				turtleBaby.lightOn(false);
+//				turtleBaby.lightOn(false);
 				checkBabiesAndSetGoal();
 			}
 				
@@ -72,7 +76,7 @@ public class TurtleBabyTracker : TurtleScript {
 		if (babiesOnBoard.Count > 0) {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 			turtleBaby.followTurtle = false;
-			turtleBaby.lightOn(true);
+//			turtleBaby.lightOn(true);
 
 
 //			float angle = Random.Range (0,360);

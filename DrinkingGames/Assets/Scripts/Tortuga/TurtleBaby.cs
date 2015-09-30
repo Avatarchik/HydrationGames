@@ -3,19 +3,18 @@ using System.Collections;
 
 public class TurtleBaby : TurtleScript {
 
-	private Light _light;
+	[HideInInspector] public Light turtleLight;
+	[HideInInspector] public Animator animator;
 	private AudioSource _wahAudioSource;
-	private Animator _animator;
-	public BabyContainer babyContainer;
 	public bool followTurtle = false;
 	public bool wander = false;
 	public Transform positionToFollow;
-	public Rigidbody2D _rb2D;
+	public Rigidbody2D rb2D;
 	public Vector2 moveTo;
 	public Transform followPosition;
 	private TurtleRotateAndAnimate _turtleRotateAndAnimate;
 
-	public CircleCollider2D wanderTarget;
+	//public CircleCollider2D wanderTarget;
 
 	public bool keepInRange;
 	private float _angleInDegrees;
@@ -26,63 +25,77 @@ public class TurtleBaby : TurtleScript {
 	public float steerForceMultiplier = 1f;
 	private Vector3 _desiredVel;
 	private Vector3 _steer;
-	private float _maxSpeed = 4f;
+	public float maxSpeed = 2f;
 
-	public GameObject debugPoint;
+	public GameObject wanderTarget;
 	public bool exploded = false;
 	public bool resumeWander = false;
 
+	[HideInInspector] public ITurtleBabyState currentState;
+	[HideInInspector] public TurtleBabyWanderState wanderState;
+	[HideInInspector] public TurtleBabyFollowState followState;
+
+	void Awake() {
+		wanderState = new TurtleBabyWanderState (this);
+		followState = new TurtleBabyFollowState (this);
+	}
+
 	// Use this for initialization
 	void Start () {
-		_light = GetComponent<Light> ();
+
+		animator = GetComponent<Animator> ();
+		currentState = wanderState;
+
+
+		turtleLight = GetComponent<Light> ();
 		_wahAudioSource = GetComponent<AudioSource> ();
-		_animator = GetComponent<Animator> ();
-		_rb2D = GetComponent<Rigidbody2D> ();
+		rb2D = GetComponent<Rigidbody2D> ();
 		_turtleRotateAndAnimate = GetComponent<TurtleRotateAndAnimate> ();
-		_turtleRotateAndAnimate.isSkidding = true;
+//		_turtleRotateAndAnimate.isSkidding = false;
 		keepInRange = true;
 		followTurtle = false;
-		lightOn (true);
+//		lightOn (true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (followTurtle) {
-			_maxSpeed = 4f;
-			followObject(positionToFollow);
-		} else {
-
-			if (!exploded) {
-				StartCoroutine(explode());
-				exploded = true;
-			}
-
-			if (resumeWander) {
-				print ("wandering");
-				_maxSpeed = 2f;
-				followObject(debugPoint.transform);
-				OscillateHalo(3f,1f);
-			}
-		}
+		currentState.UpdateState ();
+//		if (followTurtle) {
+//			maxSpeed = 4f;
+//			followObject(positionToFollow);
+//		} else {
+//
+//			if (!exploded) {
+//				StartCoroutine(explode());
+//				exploded = true;
+//			}
+//
+//			if (resumeWander) {
+//				print ("wandering");
+//				maxSpeed = 2f;
+//				followObject(wanderTarget.transform);
+//				OscillateHalo(3f,1f);
+//			}
+//		}
 	}
 
 	void followObject(Transform posToFollow) {
 		moveTo = posToFollow.position - transform.position;
 		if (moveTo.magnitude > .2f) {	
-			_rb2D.velocity = moveTo * _maxSpeed;
+			rb2D.velocity = moveTo * maxSpeed;
 		} else {
-			_rb2D.velocity = Vector2.zero;
+			rb2D.velocity = Vector2.zero;
 		} 
 	}
 
-	public void lightOn(bool on) {
-		_light.enabled = on;
+	public void lightOn(bool isOn) {
+	turtleLight.enabled = isOn;
 	}
 
 	
 	void OscillateHalo(float haloOscillationSpeed, float haloOscillationScale) {
 		_osc = Mathf.Sin (Time.time * haloOscillationSpeed) * haloOscillationScale +2f;
-		_light.range = _osc;
+		turtleLight.range = _osc;
 	}
 
 	IEnumerator explode() {
@@ -91,16 +104,21 @@ public class TurtleBaby : TurtleScript {
 		float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + transform.position.y;
 		float testX = x-transform.position.x;
 		float testY = y-transform.position.y;
-		_rb2D.AddForce(new Vector2 ((x-transform.position.x), (y-transform.position.y)), ForceMode2D.Impulse);
-		_rb2D.AddTorque (20f, ForceMode2D.Impulse);
+		rb2D.AddForce(new Vector2 ((x-transform.position.x), (y-transform.position.y)), ForceMode2D.Impulse);
+		rb2D.AddTorque (20f, ForceMode2D.Impulse);
 		yield return new WaitForSeconds (1f);
-		_rb2D.velocity = Vector2.zero;
-		_rb2D.angularVelocity = 0f;
-		_rb2D.drag = 0f;
-		_rb2D.angularDrag = 0.05f;
-		_turtleRotateAndAnimate.isSkidding = false;
+		rb2D.velocity = Vector2.zero;
+		rb2D.angularVelocity = 0f;
+		rb2D.drag = 0f;
+		rb2D.angularDrag = 0.05f;
+//		_turtleRotateAndAnimate.isSkidding = false;
 		resumeWander = true;
 
+	}
+
+	private void OnTriggerEnter2D(Collider2D coll)
+	{
+		currentState.OnTriggerEnter2D (coll);
 	}
 
 //	void KeepInWanderRange() {
