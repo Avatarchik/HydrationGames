@@ -15,8 +15,10 @@ public class TurtleBabyFollowState : ITurtleBabyState {
 		}
 		
 		public void ToWanderState() {
+			Debug.Log ("going to wander state");
+			baby.turtleLight.enabled = true;
 			baby.maxSpeed = 4f;
-
+			baby.currentState = baby.wanderState;
 		}
 		
 		public void ToFollowState(Transform follow) {
@@ -26,7 +28,9 @@ public class TurtleBabyFollowState : ITurtleBabyState {
 		}
 		
 		public void ToSkidState() {
+			Debug.Log ("to skid");
 			baby.turtleLight.enabled = true;
+			baby.currentState = baby.skidState;
 		}
 		
 		public void OnTriggerEnter2D(Collider2D coll) {}

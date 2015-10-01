@@ -15,9 +15,6 @@ public class TurtleControls : Controls {
 	private Vector2 turtleVelocity;
 	public Transform followPosition;
 
-
-
-
 	// Use this for initialization
 	void Start () {
 		rb2D = GetComponent<Rigidbody2D> ();

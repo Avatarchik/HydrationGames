@@ -75,10 +75,9 @@ public class TurtleBabyTracker : TurtleScript {
 	public void loseBaby() {
 		if (babiesOnBoard.Count > 0) {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
-			turtleBaby.followTurtle = false;
+			turtleBaby.currentState.ToSkidState();
+			//turtleBaby.followTurtle = false;
 //			turtleBaby.lightOn(true);
-
-
 //			float angle = Random.Range (0,360);
 //			float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.x;
 //			float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.y;

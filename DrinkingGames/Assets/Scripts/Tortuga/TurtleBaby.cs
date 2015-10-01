@@ -34,10 +34,13 @@ public class TurtleBaby : TurtleScript {
 	[HideInInspector] public ITurtleBabyState currentState;
 	[HideInInspector] public TurtleBabyWanderState wanderState;
 	[HideInInspector] public TurtleBabyFollowState followState;
+	[HideInInspector] public TurtleBabySkidState skidState;
+
 
 	void Awake() {
 		wanderState = new TurtleBabyWanderState (this);
 		followState = new TurtleBabyFollowState (this);
+		skidState = new TurtleBabySkidState (this);
 	}
 
 	// Use this for initialization
@@ -97,24 +100,24 @@ public class TurtleBaby : TurtleScript {
 		_osc = Mathf.Sin (Time.time * haloOscillationSpeed) * haloOscillationScale +2f;
 		turtleLight.range = _osc;
 	}
-
-	IEnumerator explode() {
-		float angle = Random.Range (0,360);
-		float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + transform.position.x;
-		float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + transform.position.y;
-		float testX = x-transform.position.x;
-		float testY = y-transform.position.y;
-		rb2D.AddForce(new Vector2 ((x-transform.position.x), (y-transform.position.y)), ForceMode2D.Impulse);
-		rb2D.AddTorque (20f, ForceMode2D.Impulse);
-		yield return new WaitForSeconds (1f);
-		rb2D.velocity = Vector2.zero;
-		rb2D.angularVelocity = 0f;
-		rb2D.drag = 0f;
-		rb2D.angularDrag = 0.05f;
-//		_turtleRotateAndAnimate.isSkidding = false;
-		resumeWander = true;
-
-	}
+//
+//	IEnumerator explode() {
+//		float angle = Random.Range (0,360);
+//		float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + transform.position.x;
+//		float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + transform.position.y;
+//		float testX = x-transform.position.x;
+//		float testY = y-transform.position.y;
+//		rb2D.AddForce(new Vector2 ((x-transform.position.x), (y-transform.position.y)), ForceMode2D.Impulse);
+//		rb2D.AddTorque (20f, ForceMode2D.Impulse);
+//		yield return new WaitForSeconds (1f);
+//		rb2D.velocity = Vector2.zero;
+//		rb2D.angularVelocity = 0f;
+//		rb2D.drag = 0f;
+//		rb2D.angularDrag = 0.05f;
+////		_turtleRotateAndAnimate.isSkidding = false;
+//		resumeWander = true;
+//
+//	}
 
 	private void OnTriggerEnter2D(Collider2D coll)
 	{

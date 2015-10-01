@@ -22,12 +22,15 @@ public class TurtleBabyWanderState : ITurtleBabyState {
 	
 	public void ToFollowState(Transform follow) {
 		//get a reference to the parent turtle baby tracker
+		baby.turtleLight.enabled = false;
 		baby.positionToFollow = follow;
 		baby.maxSpeed = 4f;
 		baby.currentState = baby.followState;
 	}
 	
-	public void ToSkidState() {}
+	public void ToSkidState() {
+		Debug.Log ("should change to skid from follow");
+	}
 
 	public void OnTriggerEnter2D(Collider2D coll) {
 	
