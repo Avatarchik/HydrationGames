@@ -17,7 +17,7 @@ public class TurtleBabyFollowState : ITurtleBabyState {
 		public void ToWanderState() {
 			Debug.Log ("going to wander state");
 			baby.turtleLight.enabled = true;
-			baby.maxSpeed = 4f;
+			baby.maxSpeed = 2f;
 			baby.currentState = baby.wanderState;
 		}
 		

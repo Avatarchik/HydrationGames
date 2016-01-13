@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StitchTypeToggle.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CameraZoom.cs" Line="51" Column="13" />
+      <File FileName="Assets/Scripts/StitchGrid.cs" Line="45" Column="3" />
+      <File FileName="Assets/Scripts/Stitch.cs" Line="31" Column="19" />
+      <File FileName="Assets/Scripts/StitchTypeToggle.cs" Line="12" Column="28" />
+      <File FileName="Assets/Scripts/ColorToggle.cs" Line="11" Column="20" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

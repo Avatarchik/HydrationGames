@@ -3,13 +3,13 @@ using System.Collections;
 
 public class SeagullCoin : MonoBehaviour {
 
-	[SerializeField]
-	private GameObject _blueTurtleParent;
-	[SerializeField]
-	private GameObject _greenTurtleParent;
-	[SerializeField]
-	private Seagull _seagull;
+	[SerializeField] private GameObject _blueTurtleParent;
+	[SerializeField] private GameObject _greenTurtleParent;
+	[SerializeField] private Seagull _seagull;
+	[SerializeField] private GameObject _coinParticlesPrefab;
 	private float _yBounds = -7f;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +33,8 @@ public class SeagullCoin : MonoBehaviour {
 			}
 
 			_seagull.attack =  true;
+			Instantiate(_coinParticlesPrefab, transform.position, Quaternion.identity);
+			Destroy(gameObject);
 		}
 	}
 

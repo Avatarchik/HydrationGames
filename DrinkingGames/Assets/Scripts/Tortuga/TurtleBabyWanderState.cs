@@ -45,7 +45,7 @@ public class TurtleBabyWanderState : ITurtleBabyState {
 	void followObject(Transform posToFollow) {
 		_moveTo = posToFollow.position - baby.transform.position;
 		if (_moveTo.magnitude > .2f) {	
-			Debug.Log ("baby max speed: " + baby.maxSpeed);
+//			Debug.Log ("baby max speed: " + baby.maxSpeed);
 			baby.rb2D.velocity = _moveTo * baby.maxSpeed;
 		} else {
 			baby.rb2D.velocity = Vector2.zero;
