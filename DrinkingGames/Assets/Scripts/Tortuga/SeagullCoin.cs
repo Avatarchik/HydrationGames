@@ -3,7 +3,8 @@ using System.Collections;
 
 public class SeagullCoin : MonoBehaviour {
 
-	public SeagullCoinManager coinManager;
+	[SerializeField] private AudioSource _audSource;
+	[SerializeField] private AudioClip _lockedOnClip;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[SerializeField] private Collider2D _collider2D;
 	[SerializeField] private GameObject _blueTurtleParent;
@@ -51,10 +52,19 @@ public class SeagullCoin : MonoBehaviour {
 
 			GameObject crosshair = Instantiate(_crosshairPrefab, turtleToAttack.transform.position, Quaternion.identity) as GameObject;
 			crosshair.transform.SetParent(turtleToAttack.transform);
-			LeanTween.scale(crosshair, Vector2.one, 1.25f).setEase(LeanTweenType.easeOutExpo);
+			LeanTween.scale(crosshair, Vector2.one, 1.5f).setEase(LeanTweenType.easeOutExpo);
+
+			_audSource.Play ();
+			LeanTween.value (gameObject, _audSource.pitch, 2f, 1.4f).setOnUpdate ((float _p) => {
+				_audSource.pitch = _p;	
+			});
+
 			while (LeanTween.isTweening(crosshair)) {yield return null;}
+			_audSource.Stop ();
+			_audSource.pitch = 1f;
+			_audSource.PlayOneShot (_lockedOnClip);
 			crosshair.GetComponent<SpriteRenderer>().color = _crosshairLockedColor;
-			yield return new WaitForSeconds(.1f);
+			yield return new WaitForSeconds(.6f);
 			_seagull.attack =  true;
 			_seagull.crossHairToDestroy = crosshair;
 			Destroy(gameObject);
