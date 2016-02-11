@@ -42,7 +42,7 @@ public class TurtleBabyTracker : TurtleScript {
 			TurtleBaby turtleBaby = coll.gameObject.GetComponent<TurtleBaby>();
 
 			if (turtleBaby.currentState != turtleBaby.followState) {
-				print ("current state is: " + turtleBaby.currentState);
+//				print ("current state is: " + turtleBaby.currentState);
 			//if (!turtleBaby.followTurtle) {
 				babiesOnBoard.Add(coll.gameObject);
 				if (babiesOnBoard.Count == 1) {

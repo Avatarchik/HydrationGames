@@ -28,7 +28,6 @@ public class TurtleBabyFollowState : ITurtleBabyState {
 		}
 		
 		public void ToSkidState() {
-			Debug.Log ("to skid");
 			baby.turtleLight.enabled = true;
 			baby.currentState = baby.skidState;
 		}

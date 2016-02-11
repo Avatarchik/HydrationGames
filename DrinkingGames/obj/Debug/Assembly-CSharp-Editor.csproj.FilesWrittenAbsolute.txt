@@ -31,3 +31,7 @@
 /Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/Mono.Cecil.Pdb.dll
 /Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/UnityEditor.Android.Extensions.dll
+/Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll
+/Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/UnityEditor.iOS.Extensions.Common.dll.mdb
+/Users/SamuelSeidenberg/Desktop/GameDesigns/HydrationGames/DrinkingGames/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll.mdb

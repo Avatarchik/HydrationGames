@@ -3,11 +3,18 @@ using System.Collections;
 
 public class Seagull : MonoBehaviour {
 
+	[SerializeField] private AudioSource _audSource;
+	[SerializeField] private AudioClip _explodeClip;
+	[SerializeField] private AudioClip _seagullClip;
+
 	public bool attack;
 	public GameObject turtleToAttack;
 	private Rigidbody2D _rb2D;
-	[SerializeField]
-	private Vector3 _startPosition;
+	[SerializeField] private Vector3 _startPosition;
+	[SerializeField] private GameObject _blackFeathersPrefab;
+	[SerializeField] private GameObject _whiteFeathersPrefab;
+
+	public GameObject crossHairToDestroy;
 
 	void Start () {
 		_startPosition = transform.position;
@@ -28,6 +35,7 @@ public class Seagull : MonoBehaviour {
 			for (int i = 0; i < babiesToLose; i++) {
 				babyTracker.loseBaby();
 			}
+			Destroy(crossHairToDestroy);
 			explode();
 		}
 	}
@@ -37,6 +45,9 @@ public class Seagull : MonoBehaviour {
 	}
 
 	public void attackTurtle() {
+		if (!_audSource.isPlaying) {
+			_audSource.Play();
+		}
 		Vector2 attackVel = (turtleToAttack.transform.position - transform.position);
 		_rb2D.velocity = attackVel.normalized * 5f;
 		faceDirectionOfMovement ();
@@ -52,6 +63,10 @@ public class Seagull : MonoBehaviour {
 
 	void explode() {
 		attack = false;
+		GameObject blackFeathers =	Instantiate(_whiteFeathersPrefab, transform.position, Quaternion.identity) as GameObject;
+		GameObject whiteFeathers = Instantiate(_blackFeathersPrefab, transform.position, Quaternion.identity) as GameObject;
+		_audSource.Stop();
+		_audSource.PlayOneShot(_explodeClip);
 		_rb2D.velocity = Vector2.zero;
 		transform.position = _startPosition;
 	}

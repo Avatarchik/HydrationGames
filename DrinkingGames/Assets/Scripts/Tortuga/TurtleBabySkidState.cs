@@ -17,7 +17,6 @@ public class TurtleBabySkidState : ITurtleBabyState {
 	public void ToWanderState(){
 		baby.currentState = baby.wanderState;
 		_skidStarted = false;
-		Debug.Log ("falsed skidstarted");
 	}
 	
 	public void ToFollowState(Transform follow){

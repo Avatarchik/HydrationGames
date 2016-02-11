@@ -3,18 +3,20 @@ using System.Collections;
 
 public class Goal : TurtleScript {
 
-
+	[SerializeField] private TortugaScoreManager _tortugaScoreManager; 
 
 	private Vector3 _slowRotateSpeed;
 	private Vector3 _fastRotateSpeed;
 	private Vector3 _rotateSpeed;
 	private Vector3 _originalScale;
 	private Vector3 _bigScale;
-	[SerializeField]
-	private bool _isOpen = false;
+	[SerializeField] private bool _isOpen = false;
+	private bool _scoreIncremented = false;
 
 	// Use this for initialization
 	void Start () {
+		_tortugaScoreManager = GameObject.Find ("ScoreManager").GetComponent<TortugaScoreManager>();
+		_scoreIncremented = false;
 		_originalScale = transform.localScale;
 		_bigScale = _originalScale * 2.5f;
 		_slowRotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * -360);
@@ -26,13 +28,11 @@ public class Goal : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		transform.Rotate (_rotateSpeed);
-	
 	}
-
-
+		
 	void OnTriggerEnter2D(Collider2D coll) {
-		if (coll.gameObject.tag == "TurtleParent" && coll.gameObject.GetComponent<TurtleBabyTracker>().team == team) {
-			if (_isOpen) {
+		if (_isOpen) {
+			if (coll.gameObject.tag == "TurtleParent" && coll.gameObject.GetComponent<TurtleBabyTracker>().team == team) {
 				takeTurtle(coll.gameObject);
 				foreach (GameObject turtleBaby in coll.gameObject.GetComponent<TurtleBabyTracker>().babiesOnBoard) {
 					takeTurtle(turtleBaby);
@@ -59,6 +59,15 @@ public class Goal : TurtleScript {
 	void takeTurtle(GameObject turtle) {
 		LeanTween.move (turtle, transform.position, 1f);
 		LeanTween.scale (turtle, Vector3.zero, 1f);
+
+		if (!_scoreIncremented) {
+			if (team == Team.Blue) {
+				_tortugaScoreManager.blueScore++;
+			} else {
+				_tortugaScoreManager.greenScore++;
+			}
+			_scoreIncremented = true;
+		}
 	}
 
 	IEnumerator loadScoreboardScene(float delay) {
