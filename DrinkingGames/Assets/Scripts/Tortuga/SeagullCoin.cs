@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SeagullCoin : MonoBehaviour {
 
+	public SeagullCoinManager coinManager;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
 	[SerializeField] private Collider2D _collider2D;
 	[SerializeField] private GameObject _blueTurtleParent;
@@ -27,23 +28,7 @@ public class SeagullCoin : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D coll) {
-//		if (coll.gameObject.tag == "TurtleParent") {
-//
-//			if (coll.gameObject.GetComponent<TurtleScript>().team == TurtleScript.Team.Blue) {
-//				_seagull.setTurtleToAttack(_greenTurtleParent);
-//			} else {
-//				_seagull.setTurtleToAttack(_blueTurtleParent);
-//			}
-//
-//			Instantiate(_coinParticlesPrefab, transform.position, Quaternion.identity);
-//
-//		
-//
-//			_seagull.attack =  true;
-//			Destroy(gameObject);
-//		}
 		if (coll.gameObject.tag == "TurtleParent") {
-			
 			StartCoroutine(DoSeagullAttackSequence(coll.gameObject));
 		}
 	}
@@ -51,6 +36,7 @@ public class SeagullCoin : MonoBehaviour {
 
 	IEnumerator DoSeagullAttackSequence(GameObject turtle) {
 		if (turtle.tag == "TurtleParent") {
+			
 			GameObject turtleToAttack;
 			if (turtle.GetComponent<TurtleScript>().team == TurtleScript.Team.Blue) {
 				turtleToAttack = _greenTurtleParent;

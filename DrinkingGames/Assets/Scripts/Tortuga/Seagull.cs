@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Seagull : MonoBehaviour {
 
+	[SerializeField] private SeagullCoinManager _coinManager;
+
 	[SerializeField] private AudioSource _audSource;
 	[SerializeField] private AudioClip _explodeClip;
 	[SerializeField] private AudioClip _seagullClip;
@@ -17,6 +19,7 @@ public class Seagull : MonoBehaviour {
 	public GameObject crossHairToDestroy;
 
 	void Start () {
+		_coinManager = GameObject.Find ("SeagullCoinManager").GetComponent<SeagullCoinManager>();
 		_startPosition = transform.position;
 		_rb2D = GetComponent<Rigidbody2D> ();
 	}
@@ -69,6 +72,7 @@ public class Seagull : MonoBehaviour {
 		_audSource.PlayOneShot(_explodeClip);
 		_rb2D.velocity = Vector2.zero;
 		transform.position = _startPosition;
+		_coinManager.seagullSequenceInProcess = false;
 	}
 
 }

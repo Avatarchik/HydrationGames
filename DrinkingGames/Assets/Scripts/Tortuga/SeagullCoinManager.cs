@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SeagullCoinManager : MonoBehaviour {
 
-
+	public bool seagullSequenceInProcess = false;
 	public GameObject coinPrefab;
 	public GameObject coin;
 	private float _coinTimer = 3f;
@@ -14,16 +14,19 @@ public class SeagullCoinManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		_coinTimer -= Time.deltaTime;
-		
-		if (_coinTimer <= 0) {
-			Destroy(coin);
-			_spawnPos = new Vector2 (Random.Range (-5f,5f), 7f );
-			coin = Instantiate(coinPrefab, _spawnPos, Quaternion.identity) as GameObject;
-			coin.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, Random.Range (-2f,-3f));
-			_coinTimer = Random.Range (4f,5f);
+		if (!seagullSequenceInProcess) {
+			_coinTimer -= Time.deltaTime;
 		}
+
+		if (_coinTimer <= 0) {
+			Destroy (coin);
+			_spawnPos = new Vector2 (Random.Range (-5f, 5f), 7f);
+			coin = Instantiate (coinPrefab, _spawnPos, Quaternion.identity) as GameObject;
+			coin.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, Random.Range (-2f, -3f));
+			seagullSequenceInProcess = true;
+			_coinTimer = Random.Range (4f, 5f);
+		}
+
 	
 	}
 }
