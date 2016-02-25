@@ -9,7 +9,7 @@ public class TreeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < _numTrees; i++) {
-			Vector3 treePos = new Vector3((i+1) * Random.Range(10f,15f), 4f, Random.Range(1f,9f));
+			Vector3 treePos = new Vector3((i+1) * Random.Range(15f,35f), 4f, Random.Range(1f,9f));
 			Instantiate(_treePrefab, treePos, Quaternion.identity);
 		}
 

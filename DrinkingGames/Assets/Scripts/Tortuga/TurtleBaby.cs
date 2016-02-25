@@ -63,6 +63,7 @@ public class TurtleBaby : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		currentState.UpdateState ();
+//		KeepInWanderRange();
 //		if (followTurtle) {
 //			maxSpeed = 4f;
 //			followObject(positionToFollow);
@@ -92,32 +93,13 @@ public class TurtleBaby : TurtleScript {
 	}
 
 	public void lightOn(bool isOn) {
-	turtleLight.enabled = isOn;
+		turtleLight.enabled = isOn;
 	}
 
-	
 	void OscillateHalo(float haloOscillationSpeed, float haloOscillationScale) {
 		_osc = Mathf.Sin (Time.time * haloOscillationSpeed) * haloOscillationScale +2f;
 		turtleLight.range = _osc;
 	}
-//
-//	IEnumerator explode() {
-//		float angle = Random.Range (0,360);
-//		float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + transform.position.x;
-//		float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + transform.position.y;
-//		float testX = x-transform.position.x;
-//		float testY = y-transform.position.y;
-//		rb2D.AddForce(new Vector2 ((x-transform.position.x), (y-transform.position.y)), ForceMode2D.Impulse);
-//		rb2D.AddTorque (20f, ForceMode2D.Impulse);
-//		yield return new WaitForSeconds (1f);
-//		rb2D.velocity = Vector2.zero;
-//		rb2D.angularVelocity = 0f;
-//		rb2D.drag = 0f;
-//		rb2D.angularDrag = 0.05f;
-////		_turtleRotateAndAnimate.isSkidding = false;
-//		resumeWander = true;
-//
-//	}
 
 	private void OnTriggerEnter2D(Collider2D coll)
 	{
@@ -126,19 +108,19 @@ public class TurtleBaby : TurtleScript {
 
 //	void KeepInWanderRange() {
 //		if (transform.localPosition.x > wanderRange) {
-//			_desiredVel = new Vector3 (-speed, _rb2D.velocity.y);
+//			_desiredVel = new Vector3 (-speed, rb2D.velocity.y);
 //		}
 //		
 //		if (transform.localPosition.x < -wanderRange) {
-//			_desiredVel = new Vector3 (speed, _rb2D.velocity.y);
+//			_desiredVel = new Vector3 (speed, rb2D.velocity.y);
 //		} 
 //		
 //		if (transform.localPosition.y > wanderRange) {
-//			_desiredVel = new Vector3 (_rb2D.velocity.y, -speed);
+//			_desiredVel = new Vector3 (rb2D.velocity.y, -speed);
 //		}
 //		
 //		if (transform.localPosition.y < -wanderRange) {
-//			_desiredVel = new Vector3 (_rb2D.velocity.y, speed);
+//			_desiredVel = new Vector3 (rb2D.velocity.y, speed);
 //		}
 //	}
 

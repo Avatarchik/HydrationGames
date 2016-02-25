@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/RabbitStaging.unity
+- path: Assets/Scenes/RabbitStaging.unity
   isLoaded: 1
   isActive: 1

@@ -13,6 +13,7 @@ public class MusicManager : MonoBehaviour {
 
 	public int prevHighestScore;
 	public int highestScore;
+	public bool switchingClip = false;
 
 	// Use this for initialization
 	void Awake () {
@@ -22,33 +23,44 @@ public class MusicManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	
 
-		if (Input.GetKeyDown(KeyCode.S)) {
-			
-			SwitchClip (_currentAudSource, _audSource2);
+		if (switchingClip) {
+
+			switch (highestScore) {
+			case 1: 
+				SwitchClip (_currentAudSource, _audSource2);
+				break;
+			case 2: 		
+				SwitchClip (_currentAudSource, _audSource3);
+				break;
+			case 3: 
+				SwitchClip (_currentAudSource, _audSource4);
+				break;
+			case 4: 
+				SwitchClip (_currentAudSource, _audSource5);
+				break;
+			case 5:
+				SwitchClip (_currentAudSource, _audSource1);
+				break;
+			}
+
 		}
 
 	}
 
 	void SwitchClip(AudioSource currAudSource, AudioSource nextAudSource) {
 		currAudSource.loop = false;
-
-		bool switchingClip = true;
-		while (switchingClip) {
-			print ("switching");
-			if (currAudSource.time >= currAudSource.clip.length - 0.01f) {
-				print ("CLIP SWITCHED!");
-				currAudSource.volume = 0;
-				nextAudSource.volume = 1;
-				currAudSource.loop = true;
-				_currentAudSource = nextAudSource;
-				switchingClip = false;
-			}
+		if (currAudSource.time >= currAudSource.clip.length - 0.01f) {
+			print ("CLIP SWITCHED!");
+			currAudSource.volume = 0;
+			nextAudSource.volume = 1;
+			currAudSource.loop = true;
+			_currentAudSource = nextAudSource;
+			switchingClip = false;
 		}
-
 	}
 
-
 }
+
+
+

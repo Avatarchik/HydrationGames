@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class Rabbit : MonoBehaviour {
-
+	[SerializeField] private MusicManager _musicManager;
 	[SerializeField] private Rigidbody2D _rb2D;
 	[SerializeField] private Animator _animator;
 
 
 	public float maxVelocity = 10f;
 	private int _jumpCount = 0;
+
 
 	// Use this for initialization
 	void Start () {

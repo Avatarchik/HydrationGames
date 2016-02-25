@@ -15,7 +15,7 @@ public class Goal : TurtleScript {
 
 	// Use this for initialization
 	void Start () {
-		_tortugaScoreManager = GameObject.Find ("ScoreManager").GetComponent<TortugaScoreManager>();
+		_tortugaScoreManager = GameObject.Find ("TortugaScoreManager").GetComponent<TortugaScoreManager>();
 		_scoreIncremented = false;
 		_originalScale = transform.localScale;
 		_bigScale = _originalScale * 2.5f;

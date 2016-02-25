@@ -19,9 +19,9 @@ public class SeagullCoinManager : MonoBehaviour {
 		}
 
 		if (_coinTimer <= 0) {
-			Destroy (coin);
+
 			_spawnPos = new Vector2 (Random.Range (-5f, 5f), 7f);
-			coin = Instantiate (coinPrefab, _spawnPos, Quaternion.identity) as GameObject;
+//			coin = Instantiate (coinPrefab, _spawnPos, Quaternion.identity) as GameObject;
 			coin.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, Random.Range (-2f, -3f));
 			seagullSequenceInProcess = true;
 			_coinTimer = Random.Range (4f, 5f);
