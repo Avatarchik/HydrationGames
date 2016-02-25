@@ -20,11 +20,11 @@ public class TurtleBabySkidState : ITurtleBabyState {
 	}
 	
 	public void ToFollowState(Transform follow){
-		baby.currentState = baby.followState;
+//		baby.currentState = baby.followState;
 	}
 	
 	public void ToSkidState(){
-		Debug.Log ("Can't change to same state");
+		Debug.Log ("Can't change to same state: skid statea");
 	}
 
 	public void OnTriggerEnter2D(Collider2D coll){}

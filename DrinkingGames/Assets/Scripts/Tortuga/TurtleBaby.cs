@@ -63,24 +63,6 @@ public class TurtleBaby : TurtleScript {
 	// Update is called once per frame
 	void Update () {
 		currentState.UpdateState ();
-//		KeepInWanderRange();
-//		if (followTurtle) {
-//			maxSpeed = 4f;
-//			followObject(positionToFollow);
-//		} else {
-//
-//			if (!exploded) {
-//				StartCoroutine(explode());
-//				exploded = true;
-//			}
-//
-//			if (resumeWander) {
-//				print ("wandering");
-//				maxSpeed = 2f;
-//				followObject(wanderTarget.transform);
-//				OscillateHalo(3f,1f);
-//			}
-//		}
 	}
 
 	void followObject(Transform posToFollow) {
@@ -89,6 +71,7 @@ public class TurtleBaby : TurtleScript {
 			rb2D.velocity = moveTo * maxSpeed;
 		} else {
 			rb2D.velocity = Vector2.zero;
+			rb2D.angularVelocity = 0f;
 		} 
 	}
 
@@ -103,7 +86,7 @@ public class TurtleBaby : TurtleScript {
 
 	private void OnTriggerEnter2D(Collider2D coll)
 	{
-		currentState.OnTriggerEnter2D (coll);
+//		currentState.OnTriggerEnter2D (coll);
 	}
 
 //	void KeepInWanderRange() {

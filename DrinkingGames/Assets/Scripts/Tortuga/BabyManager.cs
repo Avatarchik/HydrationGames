@@ -24,6 +24,12 @@ public class BabyManager : MonoBehaviour {
 		for (int i = 0; i < numBabies; i++) {
 			Vector2 spawnPos = new Vector2(Random.Range (-scatterRange,scatterRange), Random.Range (-scatterRange,scatterRange));
 			GameObject baby = Instantiate (babyPrefab, spawnPos, Quaternion.identity) as GameObject;
+			baby.name = baby.name + i;
+			foreach (Transform child in baby.transform) {
+				if (child.name == "FollowPosition") {
+					child.name += i;
+				}
+			}
 		}
 	}
 

@@ -75,16 +75,9 @@ public class TurtleBabyTracker : TurtleScript {
 	public void loseBaby() {
 		if (babiesOnBoard.Count > 0) {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
+			turtleBaby.positionToFollow = null; 
+
 			turtleBaby.currentState.ToSkidState();
-			//turtleBaby.followTurtle = false;
-//			turtleBaby.lightOn(true);
-//			float angle = Random.Range (0,360);
-//			float x = 5 * Mathf.Cos (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.x;
-//			float y = 5 * Mathf.Sin (angle * Mathf.PI/180) + turtleBaby.gameObject.transform.position.y;
-//			float testX = x-turtleBaby.gameObject.transform.position.x;
-//			float testY = y-turtleBaby.gameObject.transform.position.y;
-//			print (testX + " " +  testY);
-//			turtleBaby._rb2D.AddForce(new Vector2 ((x-turtleBaby.gameObject.transform.position.x) * 20f, (y-turtleBaby.gameObject.transform.position.y) * 20f), ForceMode2D.Impulse);
 			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 			checkBabiesAndSetGoal();
 		}

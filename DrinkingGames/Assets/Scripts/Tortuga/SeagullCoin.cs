@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SeagullCoin : MonoBehaviour {
 
+	public SeagullCoinManager coinManager;
 	[SerializeField] private AudioSource _audSource;
 	[SerializeField] private AudioClip _lockedOnClip;
 	[SerializeField] private SpriteRenderer _spriteRenderer;
@@ -25,7 +26,10 @@ public class SeagullCoin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		setInactiveIfOutOfBounds();
+		if (!coinManager.seagullSequenceInProcess) {
+			//Only want to check this when the seagull isn't attack, otherwise the coin can get destroyed before the sequence is complete, stopping the sequence.
+			setInactiveIfOutOfBounds();
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D coll) {
@@ -37,7 +41,8 @@ public class SeagullCoin : MonoBehaviour {
 
 	IEnumerator DoSeagullAttackSequence(GameObject turtle) {
 		if (turtle.tag == "TurtleParent") {
-			
+			coinManager.seagullSequenceInProcess = true;
+
 			GameObject turtleToAttack;
 			if (turtle.GetComponent<TurtleScript>().team == TurtleScript.Team.Blue) {
 				turtleToAttack = _greenTurtleParent;

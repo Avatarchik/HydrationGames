@@ -48,6 +48,7 @@ public class Seagull : MonoBehaviour {
 	}
 
 	public void attackTurtle() {
+		_coinManager.seagullSequenceInProcess = true;
 		if (!_audSource.isPlaying) {
 			_audSource.Play();
 		}
