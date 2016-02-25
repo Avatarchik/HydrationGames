@@ -23,7 +23,10 @@ public class MusicManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if (Input.GetKeyDown (KeyCode.H)) {
+			highestScore++;
+			switchingClip = true;
+		}
 		if (switchingClip) {
 
 			switch (highestScore) {
@@ -51,9 +54,12 @@ public class MusicManager : MonoBehaviour {
 	void SwitchClip(AudioSource currAudSource, AudioSource nextAudSource) {
 		currAudSource.loop = false;
 		if (currAudSource.time >= currAudSource.clip.length - 0.01f) {
-			print ("CLIP SWITCHED!");
 			currAudSource.volume = 0;
 			nextAudSource.volume = 1;
+
+			if (!nextAudSource.isPlaying) {
+				nextAudSource.Play ();
+			}
 			currAudSource.loop = true;
 			_currentAudSource = nextAudSource;
 			switchingClip = false;

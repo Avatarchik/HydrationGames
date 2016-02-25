@@ -50,7 +50,7 @@ public class TurtleBabySkidState : ITurtleBabyState {
 		baby.rb2D.velocity = Vector2.zero;
 		baby.rb2D.angularVelocity = 0f;
 		baby.rb2D.drag = 0f;
-		baby.rb2D.angularDrag = 0.05f;
+		baby.rb2D.angularDrag = 20f; //stop them from spinning
 		ToWanderState ();
 	}
 
