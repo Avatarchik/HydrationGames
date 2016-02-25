@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour {
 			switchingClip = true;
 		}
 		if (switchingClip) {
-
+			print ("highestScore: " + highestScore);
 			switch (highestScore) {
 			case 1: 
 				SwitchClip (_currentAudSource, _audSource2);

@@ -19,7 +19,7 @@ public class Goal : TurtleScript {
 		_scoreIncremented = false;
 		_originalScale = transform.localScale;
 		_bigScale = _originalScale * 2.5f;
-		_slowRotateSpeed = new Vector3 (0f, 0f, Time.deltaTime * -360);
+		_slowRotateSpeed = new Vector3 (0f, 0f, -10);
 		_fastRotateSpeed = _slowRotateSpeed * 1.5f;
 		_rotateSpeed = _slowRotateSpeed;
 	
