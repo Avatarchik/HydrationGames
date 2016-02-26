@@ -115,6 +115,7 @@
      <Compile Include="Assets\Scripts\Tortuga\SeagullCoinManager.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TortugaScoreManager.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TortugaStartGameButton.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\TortugaWave.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleBaby.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleBabyFollowState.cs" />
      <Compile Include="Assets\Scripts\Tortuga\TurtleBabySkidState.cs" />

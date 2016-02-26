@@ -23,12 +23,8 @@ public class MusicManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.H)) {
-			highestScore++;
-			switchingClip = true;
-		}
+
 		if (switchingClip) {
-			print ("highestScore: " + highestScore);
 			switch (highestScore) {
 			case 1: 
 				SwitchClip (_currentAudSource, _audSource2);

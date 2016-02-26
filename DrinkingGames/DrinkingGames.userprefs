@@ -1,17 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/TurtleBabySkidState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/TortugaWave.cs">
     <Files>
-      <File FileName="Assets/Scripts/Tortuga/SeagullCoinManager.cs" Line="7" Column="25" />
-      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="18" Column="51" />
-      <File FileName="Assets/Scripts/Tortuga/MusicManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/Seagull.cs" Line="39" Column="21" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBaby.cs" Line="92" Column="30" />
-      <File FileName="Assets/Scripts/Tortuga/ITurtleBabyState.cs" Line="14" Column="2" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabyFollowState.cs" Line="4" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabySkidState.cs" Line="21" Column="2" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabyTracker.cs" Line="78" Column="32" />
-      <File FileName="Assets/Scripts/Tortuga/BabyManager.cs" Line="30" Column="22" />
+      <File FileName="Assets/Scripts/Tortuga/TortugaScoreManager.cs" Line="30" Column="4" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabyWanderState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/SeagullCoinManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabySkidState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/BabyManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabyTracker.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/ITurtleBabyState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleControls.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Elephants/StartNewGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/CountdownTimer.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TortugaWave.cs" Line="11" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -26,7 +26,7 @@ public class TortugaScoreManager : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name == "TortugaScoreboard") {
 			checkHighestScore();
 			scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-			scoreText.text = blueScore + " " + greenScore;
+			scoreText.text = "<color=#639242FF>" + greenScore +  "</color>" + " -  <color=#298E94FF>" + blueScore +  "</color>";
 			setMusic ();
 		}
 	}
