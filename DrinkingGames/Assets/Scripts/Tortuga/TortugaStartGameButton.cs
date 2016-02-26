@@ -25,6 +25,6 @@ public class TortugaStartGameButton : MonoBehaviour {
 	}
 
 	public void startGame() {
-		SceneManager.LoadScene ("TortugaArena");		
+		SceneManager.LoadScene ("TortugaScoreboard");		
 	}
 }

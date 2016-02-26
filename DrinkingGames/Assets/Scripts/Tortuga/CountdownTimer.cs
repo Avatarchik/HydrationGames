@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CountdownTimer : MonoBehaviour {
 
 	private TextMeshProUGUI _timerText;
 	public float timeLeft = 5f;
-
+	public string levelToLoad = "TortugaArena";
 	// Use this for initialization
 	void Start () {
 		_timerText = GetComponent<TextMeshProUGUI> ();
@@ -25,6 +26,6 @@ public class CountdownTimer : MonoBehaviour {
 	}
 
 	void startNewRound() {
-		Application.LoadLevel ("TortugaArena");
+		SceneManager.LoadScene (levelToLoad);
 	}
 }
