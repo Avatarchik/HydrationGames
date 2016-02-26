@@ -1,19 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/TortugaWave.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/StartScreenGoal.cs">
     <Files>
-      <File FileName="Assets/Scripts/Tortuga/TortugaScoreManager.cs" Line="30" Column="4" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabyWanderState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/SeagullCoinManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabySkidState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/BabyManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabyTracker.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/ITurtleBabyState.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleControls.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Elephants/StartNewGame.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/CountdownTimer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Tortuga/TortugaWave.cs" Line="11" Column="13" />
+      <File FileName="Assets/Scripts/Tortuga/StartScreenGoal.cs" Line="22" Column="3" />
+      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="35" Column="110" />
+      <File FileName="Assets/Scripts/Tortuga/TortugaStartGameButton.cs" Line="22" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
