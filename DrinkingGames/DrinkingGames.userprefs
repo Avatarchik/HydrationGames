@@ -1,10 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/StartScreenGoal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/TortugaScoreManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Tortuga/StartScreenGoal.cs" Line="22" Column="3" />
-      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="35" Column="110" />
-      <File FileName="Assets/Scripts/Tortuga/TortugaStartGameButton.cs" Line="22" Column="17" />
+      <File FileName="Assets/Scripts/Tortuga/StartScreenGoal.cs" Line="37" Column="28" />
+      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="66" Column="26" />
+      <File FileName="Assets/Scripts/Tortuga/TortugaScoreManager.cs" Line="38" Column="40" />
+      <File FileName="Assets/Scripts/Tortuga/CountdownTimer.cs" Line="34" Column="17" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabySkidState.cs" Line="18" Column="32" />
+      <File FileName="Assets/Scripts/Tortuga/GameManager.cs" Line="20" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

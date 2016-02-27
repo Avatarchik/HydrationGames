@@ -37,7 +37,8 @@ public class Goal : TurtleScript {
 				foreach (GameObject turtleBaby in coll.gameObject.GetComponent<TurtleBabyTracker>().babiesOnBoard) {
 					takeTurtle(turtleBaby);
 				}
-				StartCoroutine(loadScoreboardScene(1f));
+				StartCoroutine(_tortugaScoreManager.loadScoreboardOrGameOver ());
+
 			}
 		}
 	}
@@ -70,9 +71,6 @@ public class Goal : TurtleScript {
 		}
 	}
 
-	IEnumerator loadScoreboardScene(float delay) {
-		yield return new WaitForSeconds(delay);
-		Application.LoadLevel ("TortugaScoreboard");
-	}
+
 
 }

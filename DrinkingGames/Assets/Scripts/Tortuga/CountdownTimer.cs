@@ -26,6 +26,14 @@ public class CountdownTimer : MonoBehaviour {
 	}
 
 	void startNewRound() {
+
+		if (levelToLoad == "TortugaStartScreen") {
+			GameObject mm = GameObject.Find ("MusicManager");
+			GameObject sm = GameObject.Find("TortugaScoreManager");
+			Destroy (mm);
+			Destroy (sm);
+		}
 		SceneManager.LoadScene (levelToLoad);
+
 	}
 }

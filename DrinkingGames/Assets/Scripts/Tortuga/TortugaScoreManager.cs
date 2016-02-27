@@ -15,9 +15,14 @@ public class TortugaScoreManager : MonoBehaviour {
 	private bool _blueHasHighestScore = false;
 	public Color blueColor;
 	public Color greenColor;
+
 	void Awake() {
 		DontDestroyOnLoad(gameObject);
 		_musicManager = GameObject.Find ("MusicManager").GetComponent<MusicManager> ();
+
+	}
+
+	void Start() {
 	}
 
 	
@@ -26,8 +31,21 @@ public class TortugaScoreManager : MonoBehaviour {
 	
 	}
 
+	public IEnumerator loadScoreboardOrGameOver() {
+		yield return new WaitForSeconds(1f);
+		print ("blueScore: " + blueScore);
+		print ("greenScore: " + greenScore);
+		if (blueScore >= 5 || greenScore >= 5) {
+			SceneManager.LoadScene ("TortugaGameOverScreen");
+		} else {
+			SceneManager.LoadScene ("TortugaScoreboard");
+		}
+	}
+
+
 	void OnLevelWasLoaded(int level) {
 		if (SceneManager.GetActiveScene().name == "TortugaScoreboard") {
+			print ("in tortuga scoreboard");
 			checkHighestScore();
 			scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
 			scoreText.text = "<color=#639242FF>" + greenScore +  "</color>" + " -  <color=#298E94FF>" + blueScore +  "</color>";
@@ -72,7 +90,6 @@ public class TortugaScoreManager : MonoBehaviour {
 		_musicManager.highestScore = _highestScore;
 		_musicManager.switchingClip = true;
 	}
-
 
 
 }

@@ -106,6 +106,7 @@
      <Compile Include="Assets\Scripts\Tortuga\CrabManager.cs" />
      <Compile Include="Assets\Scripts\Tortuga\DebugPoint.cs" />
      <Compile Include="Assets\Scripts\Tortuga\ExtensionMethods.cs" />
+     <Compile Include="Assets\Scripts\Tortuga\GameManager.cs" />
      <Compile Include="Assets\Scripts\Tortuga\GameOverCountdown.cs" />
      <Compile Include="Assets\Scripts\Tortuga\Goal.cs" />
      <Compile Include="Assets\Scripts\Tortuga\ITurtleBabyState.cs" />
