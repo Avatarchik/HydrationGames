@@ -5,6 +5,10 @@ public class Goal : TurtleScript {
 
 	[SerializeField] private TortugaScoreManager _tortugaScoreManager; 
 
+	[SerializeField] private AudioSource _audSource;
+	[SerializeField] private AudioClip _drainClip;
+	[SerializeField] private AudioClip _popClip;
+	[SerializeField] private GameObject goalParticlesPrefab;
 	private Vector3 _slowRotateSpeed;
 	private Vector3 _fastRotateSpeed;
 	private Vector3 _rotateSpeed;
@@ -33,9 +37,9 @@ public class Goal : TurtleScript {
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (_isOpen) {
 			if (coll.gameObject.tag == "TurtleParent" && coll.gameObject.GetComponent<TurtleBabyTracker>().team == team) {
-				takeTurtle(coll.gameObject);
+				StartCoroutine(takeParentTurtle(coll.gameObject));
 				foreach (GameObject turtleBaby in coll.gameObject.GetComponent<TurtleBabyTracker>().babiesOnBoard) {
-					takeTurtle(turtleBaby);
+					takeBabyTurtle(turtleBaby);
 				}
 				StartCoroutine(_tortugaScoreManager.loadScoreboardOrGameOver ());
 
@@ -57,9 +61,7 @@ public class Goal : TurtleScript {
 		LeanTween.scale (gameObject, _originalScale, .5f).setEase (LeanTweenType.easeOutSine);
 	}
 
-	void takeTurtle(GameObject turtle) {
-		LeanTween.move (turtle, transform.position, 1f);
-		LeanTween.scale (turtle, Vector3.zero, 1f);
+	IEnumerator takeParentTurtle(GameObject turtle) {
 
 		if (!_scoreIncremented) {
 			if (team == Team.Blue) {
@@ -69,6 +71,21 @@ public class Goal : TurtleScript {
 			}
 			_scoreIncremented = true;
 		}
+
+		turtle.transform.SetParent (gameObject.transform);
+		LeanTween.move (turtle, transform.position, .1f);
+		_audSource.PlayOneShot (_drainClip);
+		LeanTween.scale (gameObject, Vector3.zero, 1.2f);
+		while (LeanTween.isTweening (gameObject)) {
+			yield return null;
+		}
+		_audSource.PlayOneShot (_popClip);
+		GameObject goalParticles = Instantiate (goalParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
+	}
+
+	void takeBabyTurtle(GameObject turtle) {
+		turtle.transform.SetParent (gameObject.transform);
+		LeanTween.move (turtle, transform.position, .1f);
 	}
 
 

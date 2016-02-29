@@ -74,7 +74,7 @@ public class TurtleBabyTracker : TurtleScript {
 		if (babiesOnBoard.Count > 0) {
 			TurtleBaby turtleBaby = babiesOnBoard[babiesOnBoard.Count - 1].GetComponent<TurtleBaby>();
 			turtleBaby.positionToFollow = null; 
-
+			turtleBaby.playWahSound();
 			turtleBaby.currentState.ToSkidState();
 			babiesOnBoard.RemoveAt (babiesOnBoard.Count - 1);
 			checkBabiesAndSetGoal();
@@ -100,4 +100,6 @@ public class TurtleBabyTracker : TurtleScript {
 		_spriteRenderer.color = originalColor;
 
 	}
+
+
 }

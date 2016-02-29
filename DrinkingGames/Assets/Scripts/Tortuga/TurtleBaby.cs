@@ -5,7 +5,7 @@ public class TurtleBaby : TurtleScript {
 
 	[HideInInspector] public Light turtleLight;
 	[HideInInspector] public Animator animator;
-	private AudioSource _wahAudioSource;
+	[SerializeField] private AudioSource _wahAudioSource;
 	public bool followTurtle = false;
 	public bool wander = false;
 	public Transform positionToFollow;
@@ -51,7 +51,6 @@ public class TurtleBaby : TurtleScript {
 
 
 		turtleLight = GetComponent<Light> ();
-		_wahAudioSource = GetComponent<AudioSource> ();
 		rb2D = GetComponent<Rigidbody2D> ();
 		_turtleRotateAndAnimate = GetComponent<TurtleRotateAndAnimate> ();
 //		_turtleRotateAndAnimate.isSkidding = false;
@@ -87,6 +86,10 @@ public class TurtleBaby : TurtleScript {
 	private void OnTriggerEnter2D(Collider2D coll)
 	{
 //		currentState.OnTriggerEnter2D (coll);
+	}
+
+	public void playWahSound() {
+		_wahAudioSource.PlayOneShot(_wahAudioSource.clip);
 	}
 
 //	void KeepInWanderRange() {

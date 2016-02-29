@@ -32,7 +32,7 @@ public class TortugaScoreManager : MonoBehaviour {
 	}
 
 	public IEnumerator loadScoreboardOrGameOver() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(3f);
 		print ("blueScore: " + blueScore);
 		print ("greenScore: " + greenScore);
 		if (blueScore >= 5 || greenScore >= 5) {
