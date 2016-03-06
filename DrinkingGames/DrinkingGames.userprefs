@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tortuga/TortugaScoreManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/IconAlphaUI.cs">
     <Files>
-      <File FileName="Assets/Scripts/Tortuga/StartScreenGoal.cs" Line="37" Column="28" />
-      <File FileName="Assets/Scripts/Tortuga/Goal.cs" Line="66" Column="26" />
-      <File FileName="Assets/Scripts/Tortuga/TortugaScoreManager.cs" Line="38" Column="40" />
-      <File FileName="Assets/Scripts/Tortuga/CountdownTimer.cs" Line="34" Column="17" />
-      <File FileName="Assets/Scripts/Tortuga/TurtleBabySkidState.cs" Line="18" Column="32" />
-      <File FileName="Assets/Scripts/Tortuga/GameManager.cs" Line="20" Column="49" />
+      <File FileName="Assets/Scripts/Tortuga/StartScreenGoal.cs" Line="57" Column="74" />
+      <File FileName="Assets/Scripts/Tortuga/TortugaScoreManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabyTracker.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBaby.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Tortuga/TurtleBabyFollowState.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/IconAlpha.cs" Line="40" Column="3" />
+      <File FileName="Assets/Scripts/IconAlphaUI.cs" Line="7" Column="51" />
+      <File FileName="Assets/Scripts/CircuitSignal.cs" Line="27" Column="3" />
+      <File FileName="Assets/Scripts/CircuitSignalUI.cs" Line="11" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

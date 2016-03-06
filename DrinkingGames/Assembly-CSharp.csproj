@@ -64,6 +64,7 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TutorialPresentationFinished.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\UIExampleCS.cs" />
      <Compile Include="Assets\Scripts\CircuitSignal.cs" />
+     <Compile Include="Assets\Scripts\CircuitSignalUI.cs" />
      <Compile Include="Assets\Scripts\Controls.cs" />
      <Compile Include="Assets\Scripts\Elephants\BoatControls.cs" />
      <Compile Include="Assets\Scripts\Elephants\BoatHealth.cs" />
@@ -97,6 +98,7 @@
      <Compile Include="Assets\Scripts\Elephants\WeaponProjectile.cs" />
      <Compile Include="Assets\Scripts\GetItemAlert.cs" />
      <Compile Include="Assets\Scripts\IconAlpha.cs" />
+     <Compile Include="Assets\Scripts\IconAlphaUI.cs" />
      <Compile Include="Assets\Scripts\OnBoardingMeter.cs" />
      <Compile Include="Assets\Scripts\SoundPlayer.cs" />
      <Compile Include="Assets\Scripts\Tortuga\BabyContainer.cs" />

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class StartScreenGoal : TurtleScript {
 
@@ -7,6 +8,8 @@ public class StartScreenGoal : TurtleScript {
 	[SerializeField] private AudioClip _drainClip;
 	[SerializeField] private AudioClip _popClip;
 	[SerializeField] private GameObject goalParticlesPrefab;
+	[SerializeField] private TextMeshProUGUI _goalText;
+
 
 	public TortugaStartGameButton startButton;
 
@@ -16,7 +19,7 @@ public class StartScreenGoal : TurtleScript {
 	private Vector3 _rotateSpeed;
 
 	void Start() {
-		_slowRotateSpeed = new Vector3 (0f, 0f, -10);
+		_slowRotateSpeed = new Vector3 (0f, 0f, -5);
 		_fastRotateSpeed = _slowRotateSpeed * 1.5f;
 		_rotateSpeed = _slowRotateSpeed;
 	}
@@ -51,6 +54,10 @@ public class StartScreenGoal : TurtleScript {
 
 
 		LeanTween.scale (gameObject, Vector3.zero, 1.2f);
+		LeanTween.value (_goalText.gameObject, _goalText.color, Color.clear, 1f).setOnUpdate( (Color c) => {
+			_goalText.color = c;		
+		});
+
 
 
 		if (team == Team.Blue) {
@@ -64,6 +71,7 @@ public class StartScreenGoal : TurtleScript {
 		}
 
 		_audSource.PlayOneShot (_popClip);
+		Destroy(_goalText);
 		GameObject goalParticles = Instantiate (goalParticlesPrefab, transform.position, Quaternion.identity) as GameObject;
 		yield return new WaitForSeconds (4f);
 		startButton.checkTurtlesReady ();
