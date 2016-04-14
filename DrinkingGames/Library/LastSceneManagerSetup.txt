@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Elephants/ElephantsArena.unity
+- path: Assets/Scenes/Tortuga/TortugaStartScreen.unity
   isLoaded: 1
   isActive: 1
